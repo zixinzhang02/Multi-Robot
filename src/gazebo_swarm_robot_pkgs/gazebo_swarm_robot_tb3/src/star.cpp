@@ -9,31 +9,6 @@
 
 #define PI acos(-1)
 
-double angle(double x1, double y1, double x2, double y2) {
-    double angle_temp;
-    double xx, yy;
-    xx = x2 - x1;
-    yy = y2 - y1;
-    if (xx == 0.0) {
-        angle_temp = PI / 2.0;
-    } else {
-        angle_temp = atan(fabs(yy / xx));
-    }
-    if ((xx < 0.0) && (yy >= 0.0)) {
-        angle_temp = PI - angle_temp;
-    } else if ((xx < 0.0) && (yy < 0.0)) {
-        angle_temp = PI + angle_temp;
-    } else if ((xx >= 0.0) && (yy < 0.0)) {
-        angle_temp = PI * 2.0 - angle_temp;
-    }
-    return (angle_temp);
-}
-
-void check_angle(double &angle){
-    if (angle >= 2*PI)
-        angle -= 2*PI;
-}
-
 bool Avoid_Crash(std::vector<std::vector<double>> current_robot_pose, int cur_index, int other_index, double & del_theta) {
     std::vector<double> cur_pose = current_robot_pose[cur_index];
     std::vector<double> other_pose = current_robot_pose[other_index];
