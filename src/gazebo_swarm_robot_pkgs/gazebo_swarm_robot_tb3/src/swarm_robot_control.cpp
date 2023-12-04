@@ -318,9 +318,9 @@ void SwarmRobot::HardGraph2Speed(Eigen::MatrixXd Gx0, Eigen::MatrixXd Gy0)
     {
         for (int j = 0; j < swarm_robot_id.size(); j++)
         {
-            double T = 5;
-            this->ux(i) -= gx(i, j) / T;
-            this->uy(i) -= gy(i, j) / T;
+            double T = 5000;
+            this->ux(i) += gx(i, j) / T;
+            this->uy(i) += gy(i, j) / T;
         }
     }
 }

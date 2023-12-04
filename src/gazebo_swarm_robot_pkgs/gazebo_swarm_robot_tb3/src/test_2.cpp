@@ -45,9 +45,9 @@ int main(int argc, char** argv) {
             1, 0, 0, 0, -1,
             2, 1, 1, 1, 0;
     Gy0 <<  0, -1, 0, 1, 0,
-            1, 0, 1, 0, 1,
+            1, 0, 1, 2, 1,
             0, -1, 0, 1, 0,
-            -1, 0, -1, 0, -1,
+            -1, -2, -1, 0, -1,
             0, -1, 0, 1, 0;
     /* 收敛阈值 */
     double conv_th = 0.05;  // 角度的阈值，单位弧度
@@ -96,11 +96,12 @@ int main(int argc, char** argv) {
 
         swarm_robot.HardGraph2Speed(Gx0, Gy0);
 
-        for (int i = 0; i < swarm_robot_id.size(); i++) {
+        for (int i = 0; i < swarm_robot_id.size()-1 ; i++) {
             double ux = swarm_robot.ux(i);
             double uy = swarm_robot.uy(i);
             swarm_robot.moveRobotbyU(i, ux, uy);
         }
+        ros::Duration(0.05).sleep();
     }
     /* 停止所有机器人的运动 */
     swarm_robot.stopRobot(); // 调用停止机器人运动的方法
