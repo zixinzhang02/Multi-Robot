@@ -1,4 +1,4 @@
-prefix=/home/zhangzixin/mr_ws/install
+prefix=/home/zhangzixin/multi-robot/install
 
 Name: turtlebot3_description
 Description: Description of turtlebot3_description

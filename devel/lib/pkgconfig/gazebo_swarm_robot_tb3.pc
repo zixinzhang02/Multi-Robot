@@ -1,4 +1,4 @@
-prefix=/home/zhangzixin/mr_ws/devel
+prefix=/home/zhangzixin/multi-robot/devel
 
 Name: gazebo_swarm_robot_tb3
 Description: Description of gazebo_swarm_robot_tb3

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/include/swarm_robot_control.h
+/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/include/swarm_robot_control.h
 ros/ros.h
 -
 tf/tf.h
@@ -29,14 +29,16 @@ string
 -
 vector
 -
+cmath
+-
 
-/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/main_angle.cpp
+/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/main_angle.cpp
 swarm_robot_control.h
 -
 time.h
 -
 
-/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
+/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
 swarm_robot_control.h
 -
 swarm_robot_control.h

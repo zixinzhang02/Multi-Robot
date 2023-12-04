@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/main_angle.cpp" "/home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/main_angle.cpp.o"
-  "/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp" "/home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.o"
+  "/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/main_angle.cpp" "/home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/main_angle.cpp.o"
+  "/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp" "/home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,7 +21,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
-  "/home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/include"
+  "/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/gazebo-9"

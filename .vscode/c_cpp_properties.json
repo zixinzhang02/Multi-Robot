@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/zhangzixin/learn_ros/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/include/**",
+        "/home/zhangzixin/learn_ros/src/test_pkg/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

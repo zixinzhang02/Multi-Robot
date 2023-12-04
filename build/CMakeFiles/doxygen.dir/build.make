@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zhangzixin/mr_ws/src
+CMAKE_SOURCE_DIR = /home/zhangzixin/multi-robot/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhangzixin/mr_ws/build
+CMAKE_BINARY_DIR = /home/zhangzixin/multi-robot/build
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/zhangzixin/mr_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangzixin/mr_ws/src /home/zhangzixin/mr_ws/src /home/zhangzixin/mr_ws/build /home/zhangzixin/mr_ws/build /home/zhangzixin/mr_ws/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zhangzixin/multi-robot/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangzixin/multi-robot/src /home/zhangzixin/multi-robot/src /home/zhangzixin/multi-robot/build /home/zhangzixin/multi-robot/build /home/zhangzixin/multi-robot/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 

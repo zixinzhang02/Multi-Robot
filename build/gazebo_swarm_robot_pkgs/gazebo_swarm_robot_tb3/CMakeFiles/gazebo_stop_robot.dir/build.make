@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zhangzixin/mr_ws/src
+CMAKE_SOURCE_DIR = /home/zhangzixin/multi-robot/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhangzixin/mr_ws/build
+CMAKE_BINARY_DIR = /home/zhangzixin/multi-robot/build
 
 # Include any dependencies generated for this target.
 include gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/depend.make
@@ -58,17 +58,17 @@ include gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_ro
 include gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/flags.make
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/flags.make
-gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o: /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangzixin/mr_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o -c /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o: /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o"
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o -c /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.i"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp > CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.i
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp > CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.i
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.s"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp -o CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.s
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/stop_robot.cpp -o CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.s
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o.requires:
 
@@ -82,17 +82,17 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/
 
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/flags.make
-gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o: /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangzixin/mr_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o -c /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o: /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o"
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o -c /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.i"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp > CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.i
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp > CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.i
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.s"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp -o CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.s
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/src/swarm_robot_control.cpp -o CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.s
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o.requires:
 
@@ -113,47 +113,47 @@ gazebo_stop_robot_OBJECTS = \
 # External object files for target gazebo_stop_robot
 gazebo_stop_robot_EXTERNAL_OBJECTS =
 
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build.make
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libgazebo_ros_api_plugin.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libgazebo_ros_paths_plugin.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libtinyxml.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroslib.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librospack.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf2_ros.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libactionlib.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libmessage_filters.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroscpp.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf2.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librostime.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libcpp_common.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhangzixin/mr_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot"
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gazebo_stop_robot.dir/link.txt --verbose=$(VERBOSE)
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/stop_robot.cpp.o
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build.make
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libgazebo_ros_api_plugin.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libgazebo_ros_paths_plugin.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libtinyxml.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroslib.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librospack.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf2_ros.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libactionlib.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libmessage_filters.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroscpp.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libtf2.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/librostime.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /opt/ros/melodic/lib/libcpp_common.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot"
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gazebo_stop_robot.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build: /home/zhangzixin/mr_ws/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build: /home/zhangzixin/multi-robot/devel/lib/gazebo_swarm_robot_tb3/gazebo_stop_robot
 
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build
 
@@ -163,10 +163,10 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/requires
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/clean:
-	cd /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && $(CMAKE_COMMAND) -P CMakeFiles/gazebo_stop_robot.dir/cmake_clean.cmake
+	cd /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 && $(CMAKE_COMMAND) -P CMakeFiles/gazebo_stop_robot.dir/cmake_clean.cmake
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/clean
 
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/depend:
-	cd /home/zhangzixin/mr_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangzixin/mr_ws/src /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 /home/zhangzixin/mr_ws/build /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 /home/zhangzixin/mr_ws/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zhangzixin/multi-robot/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangzixin/multi-robot/src /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 /home/zhangzixin/multi-robot/build /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/depend
 

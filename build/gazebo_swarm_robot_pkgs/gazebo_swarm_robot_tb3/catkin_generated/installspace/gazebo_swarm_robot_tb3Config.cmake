@@ -67,14 +67,14 @@ set(gazebo_swarm_robot_tb3_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(gazebo_swarm_robot_tb3_SOURCE_PREFIX /home/zhangzixin/mr_ws/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3)
-  set(gazebo_swarm_robot_tb3_DEVEL_PREFIX /home/zhangzixin/mr_ws/devel)
+  set(gazebo_swarm_robot_tb3_SOURCE_PREFIX /home/zhangzixin/multi-robot/src/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3)
+  set(gazebo_swarm_robot_tb3_DEVEL_PREFIX /home/zhangzixin/multi-robot/devel)
   set(gazebo_swarm_robot_tb3_INSTALL_PREFIX "")
   set(gazebo_swarm_robot_tb3_PREFIX ${gazebo_swarm_robot_tb3_DEVEL_PREFIX})
 else()
   set(gazebo_swarm_robot_tb3_SOURCE_PREFIX "")
   set(gazebo_swarm_robot_tb3_DEVEL_PREFIX "")
-  set(gazebo_swarm_robot_tb3_INSTALL_PREFIX /home/zhangzixin/mr_ws/install)
+  set(gazebo_swarm_robot_tb3_INSTALL_PREFIX /home/zhangzixin/multi-robot/install)
   set(gazebo_swarm_robot_tb3_PREFIX ${gazebo_swarm_robot_tb3_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/zhangzixin/mr_ws/install/lib;/home/zhangzixin/test_dso/devel/lib;/home/zhangzixin/learn_ros/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/zhangzixin/multi-robot/install/lib;/home/zhangzixin/multi-robot/devel/lib;/home/zhangzixin/mr_ws_0/devel/lib;/home/zhangzixin/test_dso/devel/lib;/home/zhangzixin/learn_ros/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

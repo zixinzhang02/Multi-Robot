@@ -9,6 +9,7 @@
 #include <swarm_robot_control.h> // 包含自定义的头文件
 #include <time.h>
 
+
 /* 主函数 */
 int main(int argc, char** argv) {
     clock_t start, end;
@@ -62,6 +63,12 @@ int main(int argc, char** argv) {
     for(int i = 0; i < swarm_robot_id.size(); i++) {
         cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
     }
+
+    // Debugging
+    double v, w;
+    swarm_robot.calculateVelocity(1, 10, 5, v, w);
+    printf("v: %f, w: %f\n", v, w);
+
 
     /* 收敛标志 */
     bool is_conv = false; // 角度收敛标志

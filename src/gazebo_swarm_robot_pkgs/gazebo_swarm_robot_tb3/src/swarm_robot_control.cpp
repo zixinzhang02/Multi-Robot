@@ -190,3 +190,24 @@ bool SwarmRobot::RandomInitialize(int index) {
     ROS_INFO_STREAM("Randomly Initializing Robot_" << swarm_robot_id[index] << " with v=" << v << " w=" << w_random);
     return true; // 返回成功
 }
+
+void SwarmRobot::calculateVelocity(int index, double target_x, double target_y, double &v, double &w) {
+    // 定义控制参数
+    std::vector<double> cur_pose(3);
+    getRobotPose(index, cur_pose);
+    double current_x = cur_pose[0];
+    double current_y = cur_pose[1];
+    double current_theta = cur_pose[2];
+    printf("current_x: %f, current_y: %f, current_theta: %f\n", current_x, current_y, current_theta);
+
+    double k_v = 0.1;  // 前进速度控制增益
+    double k_w = 0.3;  // 角速度控制增益
+
+    // 计算目标位置与当前位置之间的距离和角度差
+    double distance = std::sqrt(std::pow(target_x - current_x, 2) + std::pow(target_y - current_y, 2));
+    double angle = std::atan2(target_y - current_y, target_x - current_x);
+
+    // 计算前进速度和角速度
+    v = k_v * distance;  // 控制前进速度与距离成正比
+    w = k_w * angle;     // 控制角速度与角度差成正比
+}

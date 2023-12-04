@@ -18,7 +18,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
+#include <cmath>
 
 using std::cout;
 using std::endl;
@@ -27,36 +27,53 @@ class SwarmRobot{
 
 public:
 
+    // 构造函数，初始化SwarmRobot类
     SwarmRobot(ros::NodeHandle *nh, std::vector<int> swarm_robot_id_);
+    
+    // 析构函数，释放资源
     ~SwarmRobot();
 
+    // 存储Swarm机器人的ID
     std::vector<int> swarm_robot_id;
 
+    // 机器人数量
     int robot_num;
 
+    // 获取指定机器人的当前位置信息
     bool getRobotPose(int index, std::vector<double> &pose_cur);
 
+    // 获取所有机器人的当前位置信息
     bool getRobotPose(std::vector<std::vector<double> > &swarm_pose_cur);
 
+    // 控制指定机器人的运动，通过线速度和角速度
     bool moveRobot(int index, double v, double w);
 
+    // 控制多个机器人的运动，通过多个机器人的线速度和角速度
     bool moveRobot(std::vector< std::vector<double> > &speed); 
 
+    // 停止指定机器人的运动
     bool stopRobot(int index);
 
+    // 停止所有机器人的运动
     bool stopRobot();
 
+    // 检查速度值是否在指定范围内
     double checkVel(double v, double max_v, double min_v);
 
+    // 随机初始化指定机器人的位置
     bool RandomInitialize(int index);
 
+    void calculateVelocity(int index, double target_x, double target_y, double &v, double &w);
 
 private:
 
+   // 用于监听TF（Transform）变换
    tf::TransformListener tf_listener;
+
+   // ROS发布器，用于发布机器人的速度命令
    ros::Publisher cmd_vel_pub[10];
 
-   //ROS Nodehandle
+   // ROS节点句柄
    ros::NodeHandle nh_;
 
 };
