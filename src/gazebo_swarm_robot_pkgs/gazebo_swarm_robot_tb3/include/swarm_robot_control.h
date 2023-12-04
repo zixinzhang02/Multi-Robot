@@ -63,8 +63,7 @@ public:
     // 随机初始化指定机器人的位置
     bool RandomInitialize(int index);
 
-    void calculateVelocity(int index, double target_x, double target_y, double &v, double &w);
-
+    void U2VW(int index, double ux, double uy, double &v, double &w);
 private:
 
    // 用于监听TF（Transform）变换

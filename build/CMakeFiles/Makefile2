@@ -409,6 +409,7 @@ clean: gtest/googlemock/gtest/CMakeFiles/gtest.dir/clean
 
 # Convenience name for "all" pass in the directory.
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/all
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/all
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/all
 
@@ -468,6 +469,7 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/ga
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf_generate_messages_cpp.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/actionlib_generate_messages_nodejs.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/clean
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/nav_msgs_generate_messages_eus.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_eus.dir/clean
@@ -2196,6 +2198,43 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/nav_msgs_generate_mess
 
 # clean rule for target.
 clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir
+
+# All Build rule for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/depend
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=21,22,23 "Built target test"
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all
+
+# Include target in all.
+all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangzixin/multi-robot/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangzixin/multi-robot/build/CMakeFiles 0
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule
+
+# Convenience name for target.
+test: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule
+
+.PHONY : test
+
+# clean rule for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/clean:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/clean
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/clean
+
+# clean rule for target.
+clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/clean
 
 .PHONY : clean
 

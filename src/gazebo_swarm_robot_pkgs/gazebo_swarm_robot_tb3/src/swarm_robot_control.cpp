@@ -191,23 +191,15 @@ bool SwarmRobot::RandomInitialize(int index) {
     return true; // 返回成功
 }
 
-void SwarmRobot::calculateVelocity(int index, double target_x, double target_y, double &v, double &w) {
-    // 定义控制参数
-    std::vector<double> cur_pose(3);
-    getRobotPose(index, cur_pose);
-    double current_x = cur_pose[0];
-    double current_y = cur_pose[1];
-    double current_theta = cur_pose[2];
-    printf("current_x: %f, current_y: %f, current_theta: %f\n", current_x, current_y, current_theta);
+void SwarmRobot::U2VW(int index, double ux_0,double uy_0, double &v, double &w){
+    std::vector<double> pose_cur;
+    getRobotPose(index, pose_cur);
+    double theta_robot = pose_cur[2];
+    double ux = ux_0 * std::cos(theta_robot) + uy_0 * std::sin(theta_robot);
+    double uy = -ux_0 * std::sin(theta_robot) + uy_0 * std::cos(theta_robot);
 
-    double k_v = 0.1;  // 前进速度控制增益
-    double k_w = 0.3;  // 角速度控制增益
-
-    // 计算目标位置与当前位置之间的距离和角度差
-    double distance = std::sqrt(std::pow(target_x - current_x, 2) + std::pow(target_y - current_y, 2));
-    double angle = std::atan2(target_y - current_y, target_x - current_x);
-
-    // 计算前进速度和角速度
-    v = k_v * distance;  // 控制前进速度与距离成正比
-    w = k_w * angle;     // 控制角速度与角度差成正比
+    double theta2 = ux/uy;
+    double T = 0.05;
+    v = (ux*ux + uy*uy)/ux * std::atan(theta2);
+    w = ((2/T)*std::atan(theta2));
 }

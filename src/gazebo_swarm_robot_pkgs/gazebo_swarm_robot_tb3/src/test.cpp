@@ -73,35 +73,41 @@ int main(int argc, char** argv) {
     /* 收敛标志 */
     bool is_conv = false; // 角度收敛标志
 
-    /* While 循环 */
-    while(! is_conv) { // 当未达到收敛条件时执行以下代码
+    double ux = 0.1;
+    double uy = 0.1;
+    double v, w;
+    swarm_robot.U2VW(1, ux, uy, v, w);
+    printf("v: %f, w: %f\n", v, w);
 
-        /* 判断是否达到收敛条件 */
-        del_theta = -lap * cur_theta; // 计算角度的变化, Laplace矩阵乘原始角度
-        is_conv = true; // 假设已经达到收敛条件
-        for(int i = 0; i < swarm_robot_id.size(); i++) {
-            if(std::fabs(del_theta(i)) > conv_th) {
-                is_conv = false; // 如果任何一个角度的变化大于阈值，则认为未收敛
-            }       
-        }
+    // /* While 循环 */
+    // while(! is_conv) { // 当未达到收敛条件时执行以下代码
 
-        /* 移动群体机器人 */
-        for(int i = 0; i < swarm_robot_id.size(); i++) {
-            double w = del_theta(i) * k_w; // 计算角速度
-            w = swarm_robot.checkVel(w, MAX_W, MIN_W); // 限制角速度的范围
-            swarm_robot.moveRobot(i, 0.0, w); // 控制机器人的运动，只控制角速度
-        }
+    //     /* 判断是否达到收敛条件 */
+    //     del_theta = -lap * cur_theta; // 计算角度的变化, Laplace矩阵乘原始角度
+    //     is_conv = true; // 假设已经达到收敛条件
+    //     for(int i = 0; i < swarm_robot_id.size(); i++) {
+    //         if(std::fabs(del_theta(i)) > conv_th) {
+    //             is_conv = false; // 如果任何一个角度的变化大于阈值，则认为未收敛
+    //         }       
+    //     }
 
-        /* 等待一段时间以进行机器人移动 */
-        ros::Duration(0.05).sleep(); // 暂停程序执行0.05秒，等待机器人移动
+    //     /* 移动群体机器人 */
+    //     for(int i = 0; i < swarm_robot_id.size(); i++) {
+    //         double w = del_theta(i) * k_w; // 计算角速度
+    //         w = swarm_robot.checkVel(w, MAX_W, MIN_W); // 限制角速度的范围
+    //         swarm_robot.moveRobot(i, 0.0, w); // 控制机器人的运动，只控制角速度
+    //     }
 
-        /* 获取群体机器人的姿态信息 */
-        swarm_robot.getRobotPose(current_robot_pose); // 获取机器人姿态信息
+    //     /* 等待一段时间以进行机器人移动 */
+    //     ros::Duration(0.05).sleep(); // 暂停程序执行0.05秒，等待机器人移动
+
+    //     /* 获取群体机器人的姿态信息 */
+    //     swarm_robot.getRobotPose(current_robot_pose); // 获取机器人姿态信息
         
-        for(int i = 0; i < swarm_robot_id.size(); i++) {
-            cur_theta(i) = current_robot_pose[i][2]; // 更新角度信息
-        }
-    }
+    //     for(int i = 0; i < swarm_robot_id.size(); i++) {
+    //         cur_theta(i) = current_robot_pose[i][2]; // 更新角度信息
+    //     }
+    // }
 
     /* 停止所有机器人的运动 */
     swarm_robot.stopRobot(); // 调用停止机器人运动的方法

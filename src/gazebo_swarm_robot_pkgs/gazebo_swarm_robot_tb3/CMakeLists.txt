@@ -51,6 +51,10 @@ target_link_libraries(gazebo_swarm_robot_control_x_position ${catkin_LIBRARIES})
 add_executable(gazebo_stop_robot src/stop_robot.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
 target_link_libraries(gazebo_stop_robot ${catkin_LIBRARIES})
 
+add_executable(test src/test.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(test ${catkin_LIBRARIES})
+
+
 
 
 

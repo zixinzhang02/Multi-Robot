@@ -124,17 +124,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/zhangzixin/multi-robot/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zhangzixin/multi-robot/build/CMakeFiles /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/progress.marks
@@ -963,6 +952,21 @@ nav_msgs_generate_messages_nodejs/fast:
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule
+
+# Convenience name for target.
+test: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/rule
+
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+# Convenience name for target.
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
@@ -1380,6 +1384,7 @@ src/swarm_robot_control.o: src/swarm_robot_control.cpp.o
 # target to build an object file
 src/swarm_robot_control.cpp.o:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.o
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.o
 .PHONY : src/swarm_robot_control.cpp.o
@@ -1391,6 +1396,7 @@ src/swarm_robot_control.i: src/swarm_robot_control.cpp.i
 # target to preprocess a source file
 src/swarm_robot_control.cpp.i:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.i
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.i
 .PHONY : src/swarm_robot_control.cpp.i
@@ -1402,9 +1408,37 @@ src/swarm_robot_control.s: src/swarm_robot_control.cpp.s
 # target to generate assembly for a file
 src/swarm_robot_control.cpp.s:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_stop_robot.dir/src/swarm_robot_control.cpp.s
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.s
 .PHONY : src/swarm_robot_control.cpp.s
+
+src/test.o: src/test.cpp.o
+
+.PHONY : src/test.o
+
+# target to build an object file
+src/test.cpp.o:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/test.cpp.o
+.PHONY : src/test.cpp.o
+
+src/test.i: src/test.cpp.i
+
+.PHONY : src/test.i
+
+# target to preprocess a source file
+src/test.cpp.i:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/test.cpp.i
+.PHONY : src/test.cpp.i
+
+src/test.s: src/test.cpp.s
+
+.PHONY : src/test.s
+
+# target to generate assembly for a file
+src/test.cpp.s:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/test.cpp.s
+.PHONY : src/test.cpp.s
 
 # Help Target
 help:
@@ -1506,6 +1540,9 @@ help:
 	@echo "... src/swarm_robot_control.o"
 	@echo "... src/swarm_robot_control.i"
 	@echo "... src/swarm_robot_control.s"
+	@echo "... src/test.o"
+	@echo "... src/test.i"
+	@echo "... src/test.s"
 .PHONY : help
 
 
