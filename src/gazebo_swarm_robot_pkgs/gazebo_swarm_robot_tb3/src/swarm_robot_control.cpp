@@ -49,6 +49,19 @@ SwarmRobot::SwarmRobot(ros::NodeHandle *nh, std::vector<int> swarm_robot_id_):
         std::string vel_topic = "/robot_" + std::to_string(i+1) + "/cmd_vel"; // 生成机器人速度控制的 ROS 话题名称
         cmd_vel_pub[i] = nh_.advertise<geometry_msgs::Twist>(vel_topic, 10); // 创建速度控制消息发布器
     }
+    // 初始化位置矩阵
+    this->distance_matrix.resize(this->robot_num, this->robot_num);
+    this->distance_matrix.setZero();
+    this->x_distance_matrix.resize(this->robot_num, this->robot_num);
+    this->x_distance_matrix.setZero();
+    this->y_distance_matrix.resize(this->robot_num, this->robot_num);
+    this->y_distance_matrix.setZero();
+
+    this->ux.resize(this->robot_num);
+    this->ux.setZero();
+    this->uy.resize(this->robot_num);
+    this->uy.setZero();
+
 }
 
 SwarmRobot::~SwarmRobot()
@@ -195,11 +208,119 @@ void SwarmRobot::U2VW(int index, double ux_0,double uy_0, double &v, double &w){
     std::vector<double> pose_cur;
     getRobotPose(index, pose_cur);
     double theta_robot = pose_cur[2];
-    double ux = ux_0 * std::cos(theta_robot) + uy_0 * std::sin(theta_robot);
-    double uy = -ux_0 * std::sin(theta_robot) + uy_0 * std::cos(theta_robot);
+    double ux = ux_0 * std::cos(theta_robot) - uy_0 * std::sin(theta_robot);
+    double uy = ux_0 * std::sin(theta_robot) + uy_0 * std::cos(theta_robot);
 
+    if (ux == 0) {
+        ux = 0.001;
+    }
+    if (uy == 0) {
+        uy = 0.001;
+    }
+    
     double theta2 = ux/uy;
     double T = 0.05;
     v = (ux*ux + uy*uy)/ux * std::atan(theta2);
-    w = ((2/T)*std::atan(theta2));
+    w = 0.2*((2/T)*std::atan(theta2));
+    // while (w > 2*3.1416)
+    // {
+    //     w = w - 2*3.1416;
+    // }
+    // if (w > 3.1416) {
+    //     w = -3.1416 * 2 + w;
+    // }
+    // w *= 0.3;
+    // 限制w的范围在[-1,1]
+    if (w > 0.3) {
+        w = 0.3;
+    }
+    if (w < -0.3) {
+        w = -0.3;
+    }
+    // w *= 0.2;
+
+    
+}
+
+void SwarmRobot::moveRobotbyU(int index, double ux_0, double uy_0){
+    double v,w;
+    U2VW(index, ux_0, uy_0, v, w);
+    moveRobot(index, v, w);
+}
+
+void SwarmRobot::calculate_all_Distance(){
+    // update all the distance between robots
+    // store it into the distance matrix
+    for (int i = 0; i < this->robot_num; i++) {
+        for (int j = 0; j < this->robot_num; j++) {
+            if (i == j) {
+                this->distance_matrix(i, j) = 0;
+            } else {
+                std::vector<double> pose_i;
+                std::vector<double> pose_j;
+                getRobotPose(i, pose_i);
+                getRobotPose(j, pose_j);
+                double distance_matrix_ij = sqrt(pow(pose_i[0] - pose_j[0], 2) + pow(pose_i[1] - pose_j[1], 2));
+                this->distance_matrix(i, j) = distance_matrix_ij;
+            }
+        }
+    }
+}
+
+void SwarmRobot::calculate_all_x_distance(){
+    // update all the distance between robots in x axis
+    // store it into the y_distance_matrix
+    for (int i = 0; i < this->robot_num; i++) {
+        for (int j = 0; j < this->robot_num; j++) {
+            if (i == j) {
+                this->x_distance_matrix(i, j) = 0;
+            } else {
+                std::vector<double> pose_i;
+                std::vector<double> pose_j;
+                getRobotPose(i, pose_i);
+                getRobotPose(j, pose_j);
+                double distance_matrix_ij = pose_i[0] - pose_j[0];
+                this->x_distance_matrix(i, j) = distance_matrix_ij;
+            }
+        }
+    }
+}
+
+void SwarmRobot::calculate_all_y_distance(){
+    // update all the distance between robots in y axis
+    // store it into the y_distance_matrix
+    for (int i = 0; i < this->robot_num; i++) {
+        for (int j = 0; j < this->robot_num; j++) {
+            if (i == j) {
+                this->y_distance_matrix(i, j) = 0;
+            } else {
+                std::vector<double> pose_i;
+                std::vector<double> pose_j;
+                getRobotPose(i, pose_i);
+                getRobotPose(j, pose_j);
+                double distance_matrix_ij = pose_i[1] - pose_j[1];
+                this->y_distance_matrix(i, j) = distance_matrix_ij;
+            }
+        }
+    }
+}
+
+void SwarmRobot::HardGraph2Speed(Eigen::MatrixXd Gx0, Eigen::MatrixXd Gy0)
+{
+    // this->x_distance_matrix
+    // this->y_distance_matrix
+    // this->distance_matrix
+    
+    Eigen::MatrixXd gx = Gx0 - this->x_distance_matrix;
+    Eigen::MatrixXd gy = Gy0 - this->y_distance_matrix;
+
+    for (int i = 0; i < swarm_robot_id.size(); i++)
+    {
+        for (int j = 0; j < swarm_robot_id.size(); j++)
+        {
+            double T = 5;
+            this->ux(i) -= gx(i, j) / T;
+            this->uy(i) -= gy(i, j) / T;
+        }
+    }
 }

@@ -30,11 +30,18 @@ int main(int argc, char** argv) {
     //         -1, -1, 4, -1, -1,
     //         -1, -1, -1, 4, -1,
     //         -1, -1, -1, -1, 4;
-    lap <<  1, -1,  0,  0,  0,
-            -1, 3, -1,  0, -1,
-            0, -1,  3, -1, -1,
-            0,  0, -1,  2, -1,
-            0, -1, -1, -1,  3; 
+    Eigen::MatrixXd Gx0(swarm_robot_id.size(), swarm_robot_id.size()); // 创建Gx0矩阵对象
+    Eigen::MatrixXd Gy0(swarm_robot_id.size(), swarm_robot_id.size()); // 创建Gy0矩阵对象
+    Gx0 <<  0, -1, -1, -1, -2,
+            1, 0, 0, 0, -1,
+            1, 0, 0, 0, -1,
+            1, 0, 0, 0, -1,
+            2, 1, 1, 1, 0;
+    Gy0 <<  0, -1, 0, 1, 0,
+            1, 0, 1, 0, 1,
+            0, -1, 0, 1, 0,
+            -1, 0, -1, 0, -1,
+            0, -1, 0, 1, 0;
 
     /* 收敛阈值 */
     double conv_th = 0.05;  // 角度的阈值，单位弧度
@@ -73,12 +80,28 @@ int main(int argc, char** argv) {
     /* 收敛标志 */
     bool is_conv = false; // 角度收敛标志
 
-    double ux = 0.1;
-    double uy = 0.1;
-    double v, w;
-    swarm_robot.U2VW(1, ux, uy, v, w);
-    printf("v: %f, w: %f\n", v, w);
+    start = clock();
+    while(1){
+        // 计算循环时间
+        double ux =  0;
+        double uy =  0.1;
+        // double v = 0.1;
+        // double w = 0.1;
+        // // swarm_robot.moveRobot(2, v, w);
+        swarm_robot.moveRobotbyU(0, ux, uy);
+        ros::Duration(0.05).sleep();
+        // //start = clock();
 
+        // swarm_robot.moveRobot(2, 0.1, 0);
+        // ros::Duration(10).sleep();
+        // swarm_robot.stopRobot();
+        swarm_robot.calculate_all_Distance();
+        swarm_robot.calculate_all_x_distance();
+        std::cout << swarm_robot.distance_matrix << std::endl;
+        std::cout << std::endl;
+        
+    }
+    
     // /* While 循环 */
     // while(! is_conv) { // 当未达到收敛条件时执行以下代码
 

@@ -34,4 +34,4 @@ rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_angle
 rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_x_position
 ```
 
-rosrun gazebo_swarm_robot_tb3 test
+rosrun gazebo_swarm_robot_tb3 test_2

@@ -54,6 +54,9 @@ target_link_libraries(gazebo_stop_robot ${catkin_LIBRARIES})
 add_executable(test src/test.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
 target_link_libraries(test ${catkin_LIBRARIES})
 
+add_executable(test_2 src/test_2.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(test_2 ${catkin_LIBRARIES})
+
 
 
 
