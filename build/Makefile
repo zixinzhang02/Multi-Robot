@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named move_formation
+
+# Build rule for target.
+move_formation: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 move_formation
+.PHONY : move_formation
+
+# fast build rule for target.
+move_formation/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build
+.PHONY : move_formation/fast
+
+#=============================================================================
 # Target rules for targets named formation_change
 
 # Build rule for target.
@@ -1359,6 +1372,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... move_formation"
 	@echo "... formation_change"
 	@echo "... formation_triangle"
 	@echo "... actionlib_msgs_generate_messages_py"

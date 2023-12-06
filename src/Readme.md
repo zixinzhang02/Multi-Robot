@@ -22,6 +22,7 @@ vim ~/.bashrc
 ## 打开多机器人Gazebo仿真平台
 ```
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
 ```
 
 ## 运行多移动机器人运动控制程序

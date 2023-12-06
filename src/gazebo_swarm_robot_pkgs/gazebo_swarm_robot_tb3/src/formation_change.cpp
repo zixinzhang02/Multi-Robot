@@ -149,7 +149,7 @@ int main(int argc, char** argv) {
             while (del_theta(i) < -pi or del_theta(i) > pi) {
                 if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
                 if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
-            }           
+            }
         }
 
         is_conv = true;

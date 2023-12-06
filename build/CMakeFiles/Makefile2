@@ -408,6 +408,7 @@ clean: gtest/googlemock/gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3
 
 # Convenience name for "all" pass in the directory.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/all
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/all
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/all
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/all
@@ -421,6 +422,7 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all: gazebo_swarm_robot_pkgs/gaze
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/all
 
 # Convenience name for "clean" pass in the directory.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/clean
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
@@ -509,6 +511,43 @@ gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/clean: gazebo_swarm_robot_pkgs/ga
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/preinstall:
 
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/preinstall
+
+#=============================================================================
+# Target rules for target gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir
+
+# All Build rule for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/all:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/depend
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=33,34,35 "Built target move_formation"
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/all
+
+# Include target in all.
+all: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangzixin/multi-robot/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangzixin/multi-robot/build/CMakeFiles 0
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule
+
+# Convenience name for target.
+move_formation: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule
+
+.PHONY : move_formation
+
+# clean rule for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/clean:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/clean
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/clean
+
+# clean rule for target.
+clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir
@@ -911,7 +950,7 @@ clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/sensor_msgs_gen
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/all:
 	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/depend
 	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=36,37,38 "Built target test_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=39,40,41 "Built target test_2"
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test_2.dir/all
 
 # Include target in all.
@@ -2403,7 +2442,7 @@ clean: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/nav_msgs_genera
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all:
 	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/depend
 	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=33,34,35 "Built target test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhangzixin/multi-robot/build/CMakeFiles --progress-num=36,37,38 "Built target test"
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/all
 
 # Include target in all.

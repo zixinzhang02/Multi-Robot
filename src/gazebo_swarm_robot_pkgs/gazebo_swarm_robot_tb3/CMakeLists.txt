@@ -69,6 +69,9 @@ target_link_libraries(formation_triangle ${catkin_LIBRARIES})
 add_executable(formation_change src/formation_change.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
 target_link_libraries(formation_change ${catkin_LIBRARIES})
 
+add_executable(move_formation src/move_formation.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(move_formation ${catkin_LIBRARIES})
+
 
 
 

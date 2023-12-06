@@ -11,7 +11,36 @@
 #include <time.h>
 #include <math.h>
 #include <Eigen/Dense> // 包含Eigen库
+#include <Eigen/Core>
 #define pi acos(-1)
+
+// 动态编队相关
+int findClosestRobot(Eigen::VectorXd cur_x, Eigen::VectorXd cur_y) {
+    int numRobots = cur_x.size();
+    if (numRobots != cur_y.size()) {
+        std::cerr << "Vector sizes do not match!" << std::endl;
+        return -1; // 返回无效的ID
+    }
+
+    // 计算坐标的平均值
+    double mean_x = cur_x.mean();
+    double mean_y = cur_y.mean();
+
+    // 初始化最小距离和最近机器人的ID
+    double minDistance = std::numeric_limits<double>::max();
+    int closestRobotID = -1;
+
+    // 计算每个机器人到平均值的距离并找到最近的机器人
+    for (int i = 0; i < numRobots; ++i) {
+        double distance = std::sqrt(std::pow(cur_x[i] - mean_x, 2) + std::pow(cur_y[i] - mean_y, 2));
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestRobotID = i;
+        }
+    }
+
+    return closestRobotID;
+}
 
 /* 主函数 */
 int main(int argc, char** argv) {
@@ -22,6 +51,7 @@ int main(int argc, char** argv) {
 
     /* 第一步：基于Aruco标记设置群体机器人的ID */
     std::vector<int> swarm_robot_id{1, 2, 3, 4, 5}; // 创建包含群体机器人ID的向量
+    std::vector<int> dynamic_robot_id{0, 1, 2, 3, 4}; //
 
     /* 初始化群体机器人对象 */
     SwarmRobot swarm_robot(&nh, swarm_robot_id); // 创建 SwarmRobot 类的对象，用于控制一组机器人
@@ -109,11 +139,19 @@ int main(int argc, char** argv) {
         cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
     }
 
-    // Debugging
-    // double v, w;
-    // swarm_robot.calculateVelocity(1, 10, 5, v, w);
-    // printf("v: %f, w: %f\n", v, w);
-
+    // 调用函数，取中间的机器人作为3号机器人
+    int middle = findClosestRobot(cur_x, cur_y);
+    // 让dynamic_robot_id的第三个元素为middle（middle可能本身不在3，不在3的话进行调换）
+    if (dynamic_robot_id[2] != middle) {
+        int temp = dynamic_robot_id[2];
+        dynamic_robot_id[2] = middle;
+        for(int i = 0; i < dynamic_robot_id.size(); i++) {
+            if (dynamic_robot_id[i] == middle) {
+                dynamic_robot_id[i] = temp;
+                break;
+            }
+        }
+    }
 
     /* 收敛标志 */
     bool is_conv = false; // 角度收敛标志
@@ -130,32 +168,35 @@ int main(int argc, char** argv) {
         del_y = -lap * (cur_y + needed_y); // 计算需要的y的变化
         is_conv = true; // 假设已经达到收敛条件
         for(int i = 0; i < swarm_robot_id.size(); i++) {
-            if ( (std::fabs(del_x(i)) > conv_x) or (std::fabs(del_y(i)) > conv_y) ) {
+            int j = dynamic_robot_id[i];
+            if ( (std::fabs(del_x(j)) > conv_x) or (std::fabs(del_y(j)) > conv_y) ) {
                 is_conv = false; // 如果任何一个x坐标的变化大于阈值，则认为未收敛
             }       
         }
 
         // 先转一下
         for (int i = 0; i < swarm_robot_id.size(); i++) {
-            v_theta(i) = std::atan2(del_y(i) , del_x(i));
-            del_theta(i) = -(cur_theta(i) - v_theta(i));
-            while (del_theta(i) < -pi or del_theta(i) > pi) {
-                if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
-                if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
+            int j = dynamic_robot_id[i];
+            v_theta(j) = std::atan2(del_y(j) , del_x(j));
+            del_theta(j) = -(cur_theta(j) - v_theta(j));
+            while (del_theta(j) < -pi or del_theta(j) > pi) {
+                if (del_theta(j) < -pi) del_theta(j) += 2 * pi;
+                if (del_theta(j) > pi) del_theta(j) -= 2 * pi;
             }           
         }
         /* Swarm robot move */
         for(int i = 0; i < swarm_robot_id.size(); i++) {
-            if (std::fabs(del_theta(i)) > 0.1) {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MAX_W;
+            int j = dynamic_robot_id[i];
+            if (std::fabs(del_theta(j)) > 0.1) {
+                w = del_theta(j) / std::fabs(del_theta(j)) * MAX_W;
                 v = 0;
             }
             else {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MIN_W;
-                v = std::sqrt(std::pow(del_x(i),2) + std::pow(del_y(i),2));
+                w = del_theta(j) / std::fabs(del_theta(j)) * MIN_W;
+                v = std::sqrt(std::pow(del_x(j),2) + std::pow(del_y(j),2));
                 v = swarm_robot.checkVel(v, MAX_V, MIN_V);
             }    
-            swarm_robot.moveRobot(i, v, w);  
+            swarm_robot.moveRobot(j, v, w);  
         }
         ros::Duration(0.05).sleep();
 
@@ -167,26 +208,13 @@ int main(int argc, char** argv) {
 
         swarm_robot.getRobotPose(current_robot_pose); // 获取机器人姿态信息
         for(int i = 0; i < swarm_robot_id.size(); i++) {
-            cur_x(i) = current_robot_pose[i][0]; // 提取位置信息
-            cur_y(i) = current_robot_pose[i][1]; // 提取位置信息
-            cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
+            int j = dynamic_robot_id[i];
+            cur_x(j) = current_robot_pose[j][0]; // 提取位置信息
+            cur_y(j) = current_robot_pose[j][1]; // 提取位置信息
+            cur_theta(j) = current_robot_pose[j][2]; // 提取角度信息
         }
     }
-    // while(1){
-    //     /* 获取当前机器人的距离信息 */
-    //     swarm_robot.calculate_all_Distance();
-    //     swarm_robot.calculate_all_x_distance();
-    //     swarm_robot.calculate_all_y_distance();
 
-    //     swarm_robot.HardGraph2Speed(Gx0, Gy0);
-
-    //     for (int i = 0; i < swarm_robot_id.size()-1 ; i++) {
-    //         double ux = swarm_robot.ux(i);
-    //         double uy = swarm_robot.uy(i);
-    //         swarm_robot.moveRobotbyU(i, ux, uy);
-    //     }
-    //     ros::Duration(0.05).sleep();
-    // }
     /* 停止所有机器人的运动 */
     swarm_robot.stopRobot(); // 调用停止机器人运动的方法
 
