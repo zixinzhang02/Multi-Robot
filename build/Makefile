@@ -285,6 +285,32 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named formation_change
+
+# Build rule for target.
+formation_change: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 formation_change
+.PHONY : formation_change
+
+# fast build rule for target.
+formation_change/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/build
+.PHONY : formation_change/fast
+
+#=============================================================================
+# Target rules for targets named formation_triangle
+
+# Build rule for target.
+formation_triangle: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 formation_triangle
+.PHONY : formation_triangle
+
+# fast build rule for target.
+formation_triangle/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/build
+.PHONY : formation_triangle/fast
+
+#=============================================================================
 # Target rules for targets named actionlib_msgs_generate_messages_py
 
 # Build rule for target.
@@ -675,6 +701,19 @@ gazebo_stop_robot/fast:
 .PHONY : gazebo_stop_robot/fast
 
 #=============================================================================
+# Target rules for targets named formation_circle
+
+# Build rule for target.
+formation_circle: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 formation_circle
+.PHONY : formation_circle
+
+# fast build rule for target.
+formation_circle/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_circle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_circle.dir/build
+.PHONY : formation_circle/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -816,6 +855,19 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 std_msgs_generate_messages_nodejs/fast:
 	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named formation_cross
+
+# Build rule for target.
+formation_cross: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 formation_cross
+.PHONY : formation_cross
+
+# fast build rule for target.
+formation_cross/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/build
+.PHONY : formation_cross/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
@@ -1307,6 +1359,8 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... formation_change"
+	@echo "... formation_triangle"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... gazebo_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_py"
@@ -1337,6 +1391,7 @@ help:
 	@echo "... gazebo_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... gazebo_stop_robot"
+	@echo "... formation_circle"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
@@ -1348,6 +1403,7 @@ help:
 	@echo "... gazebo_msgs_generate_messages_py"
 	@echo "... trajectory_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... formation_cross"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... gazebo_ros_gencfg"
 	@echo "... actionlib_msgs_generate_messages_cpp"

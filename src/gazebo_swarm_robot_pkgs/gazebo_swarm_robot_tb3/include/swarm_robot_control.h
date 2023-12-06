@@ -75,6 +75,8 @@ public:
 
     void moveRobotbyU(int index, double ux_0, double uy_0);
 
+    void moveRobotsbyU(Eigen::VectorXd del_x,  Eigen::VectorXd del_y);
+
     void calculate_all_Distance();
 
     void calculate_all_x_distance();

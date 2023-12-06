@@ -248,6 +248,12 @@ void SwarmRobot::moveRobotbyU(int index, double ux_0, double uy_0){
     moveRobot(index, v, w);
 }
 
+void SwarmRobot::moveRobotsbyU(Eigen::VectorXd del_x,  Eigen::VectorXd del_y){
+    for (int i = 0; i < this->robot_num; i++) {
+        moveRobotbyU(i, del_x(i), del_y(i));
+    }
+}
+
 void SwarmRobot::calculate_all_Distance(){
     // update all the distance between robots
     // store it into the distance matrix

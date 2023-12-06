@@ -83,23 +83,23 @@ int main(int argc, char** argv) {
     start = clock();
     while(1){
         // 计算循环时间
-        double ux =  0;
-        double uy =  0.1;
-        // double v = 0.1;
-        // double w = 0.1;
-        // // swarm_robot.moveRobot(2, v, w);
-        swarm_robot.moveRobotbyU(0, ux, uy);
-        ros::Duration(0.05).sleep();
-        // //start = clock();
+        // double ux =  0;
+        // double uy =  0.1;
+        // // double v = 0.1;
+        // // double w = 0.1;
+        // // // swarm_robot.moveRobot(2, v, w);
+        // swarm_robot.moveRobotbyU(0, ux, uy);
+        // ros::Duration(0.05).sleep();
+        // // //start = clock();
 
-        // swarm_robot.moveRobot(2, 0.1, 0);
-        // ros::Duration(10).sleep();
-        // swarm_robot.stopRobot();
-        swarm_robot.calculate_all_Distance();
-        swarm_robot.calculate_all_x_distance();
-        std::cout << swarm_robot.distance_matrix << std::endl;
-        std::cout << std::endl;
-        
+        // // swarm_robot.moveRobot(2, 0.1, 0);
+        // // ros::Duration(10).sleep();
+        // // swarm_robot.stopRobot();
+        // swarm_robot.calculate_all_Distance();
+        // swarm_robot.calculate_all_x_distance();
+        // std::cout << swarm_robot.distance_matrix << std::endl;
+        // std::cout << std::endl;
+        swarm_robot.moveRobot(1, 0, 1.0);
     }
     
     // /* While 循环 */

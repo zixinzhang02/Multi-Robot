@@ -35,3 +35,7 @@ rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_x_position
 ```
 
 rosrun gazebo_swarm_robot_tb3 test_2
+
+rosrun gazebo_swarm_robot_tb3 formation_change
+
+rosrun gazebo_swarm_robot_tb3 formation

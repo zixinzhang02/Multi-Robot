@@ -57,6 +57,17 @@ target_link_libraries(test ${catkin_LIBRARIES})
 add_executable(test_2 src/test_2.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
 target_link_libraries(test_2 ${catkin_LIBRARIES})
 
+add_executable(formation_circle src/formation_circle.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(formation_circle ${catkin_LIBRARIES})
+
+add_executable(formation_cross src/formation_cross.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(formation_cross ${catkin_LIBRARIES})
+
+add_executable(formation_triangle src/formation_triangle.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(formation_triangle ${catkin_LIBRARIES})
+
+add_executable(formation_change src/formation_change.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(formation_change ${catkin_LIBRARIES})
 
 
 
