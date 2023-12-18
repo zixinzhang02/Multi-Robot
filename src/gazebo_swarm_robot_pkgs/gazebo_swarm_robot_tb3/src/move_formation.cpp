@@ -26,7 +26,6 @@ int main(int argc, char** argv) {
     /* 初始化群体机器人对象 */
     SwarmRobot swarm_robot(&nh, swarm_robot_id); // 创建 SwarmRobot 类的对象，用于控制一组机器人
 
-
     /* 设置拉普拉斯矩阵 */
     Eigen::MatrixXd lap(swarm_robot_id.size(), swarm_robot_id.size()); // 创建拉普拉斯矩阵对象
     lap <<  5, -1, -1, -1, -1, -1,
@@ -35,25 +34,6 @@ int main(int argc, char** argv) {
             -1, -1, -1, 5, -1, -1,
             -1, -1, -1, -1, 5, -1,
             -1, -1, -1, -1, -1, 5;
-
-    // lap <<  1, 1,  0,  0,  0,
-    //         1, 3, 1,  0, 1,
-    //         0, 1,  3, 1, 1,
-    //         0,  0, 1,  2, 1,
-    //         0, 1, 1, 1,  3; 
-
-    // Eigen::MatrixXd Gx0(swarm_robot_id.size(), swarm_robot_id.size()); // 创建Gx0矩阵对象
-    // Eigen::MatrixXd Gy0(swarm_robot_id.size(), swarm_robot_id.size()); // 创建Gy0矩阵对象
-    // Gx0 <<  0, -1, -1, -1, -2,
-    //         1, 0, 0, 0, -1,
-    //         1, 0, 0, 0, -1,
-    //         1, 0, 0, 0, -1,
-    //         2, 1, 1, 1, 0;
-    // Gy0 <<  0, -1, 0, 1, 0,
-    //         1, 0, 1, 2, 1,
-    //         0, -1, 0, 1, 0,
-    //         -1, -2, -1, 0, -1,
-    //         0, -1, 0, 1, 0;
     /* 收敛阈值 */
     double conv_th = 0.05;  // 角度的阈值，单位弧度
     double conv_x = 0.1;  // x的阈值，单位m
@@ -101,8 +81,9 @@ int main(int argc, char** argv) {
     double original_radius = std::sqrt(std::pow(needed_x_circle[0], 2) + std::pow(needed_y_circle[0], 2));
     double target_radius = 1; // 目标半径
     double scale_factor = target_radius / original_radius;
-    needed_x_circle *= scale_factor / 2.2;
-    needed_y_circle *= scale_factor / 2.2;
+
+    needed_x_circle *= scale_factor / 2;
+    needed_y_circle *= scale_factor / 2;
 
     needed_x_rectangle *= scale_factor / 2;
     needed_y_rectangle *= scale_factor / 2;
@@ -112,7 +93,10 @@ int main(int argc, char** argv) {
     conv_x = 0.05;
     conv_y = 0.05;
     swarm_robot.Formation(needed_x_circle, needed_y_circle, lap, conv_x, conv_y);
+    swarm_robot.ChangeFormationDirection(pi/2);
+    swarm_robot.MoveFormation(needed_x_circle, needed_y_circle, lap, 0.2, 2);
     swarm_robot.ChangeFormationDirection(0);
+    swarm_robot.MoveFormation(needed_x_circle, needed_y_circle, lap, 0.2, 5);
 
     // conv_x = 0.05;
     // conv_y = 0.05;

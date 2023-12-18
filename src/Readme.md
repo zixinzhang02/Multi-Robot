@@ -42,3 +42,5 @@ rosrun gazebo_swarm_robot_tb3 formation_change
 rosrun gazebo_swarm_robot_tb3 formation_circle
 
 rosrun gazebo_swarm_robot_tb3 formation_cross
+
+rosrun gazebo_swarm_robot_tb3 move_formation

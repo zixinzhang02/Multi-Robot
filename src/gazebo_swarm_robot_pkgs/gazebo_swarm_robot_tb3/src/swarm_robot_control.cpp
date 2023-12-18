@@ -46,13 +46,9 @@ SwarmRobot::SwarmRobot(ros::NodeHandle *nh, std::vector<int> swarm_robot_id_):
 
     /* Initialize swarm robot */
     for(int i = 0; i < 10; i++) {
-        std::cout << "111111111" << endl;
-        std::string vel_topic = "/robot_" + std::to_string(i+1) + "/cmd_vel";
-        std::cout << "222222222" << endl; // 生成机器人速度控制的 ROS 话题名称
-        cmd_vel_pub[i] = nh_.advertise<geometry_msgs::Twist>(vel_topic, 10);
-        std::cout << "333333333" << endl; // 创建速度控制消息发布器
+        std::string vel_topic = "/robot_" + std::to_string(i+1) + "/cmd_vel";// 生成机器人速度控制的 ROS 话题名称
+        cmd_vel_pub[i] = nh_.advertise<geometry_msgs::Twist>(vel_topic, 10);// 创建速度控制消息发布器
     }
-    std::cout<<"444444444"<<std::endl;
     // 初始化位置矩阵
     // this->distance_matrix.resize(this->robot_num, this->robot_num);
     // this->distance_matrix.setZero();
@@ -417,7 +413,7 @@ void SwarmRobot::Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, E
     ros::Duration(2).sleep();
 }
 
-void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form)
+void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form, double time)
 {
     // 在形成编队之后，移动编队
     std::cout << "this->robot_num" << this->robot_num << endl;
@@ -445,7 +441,9 @@ void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_
         cur_y(i) = current_robot_pose[i][1]; // 提取位置信息
         cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
     }
-    while(true) { // 当未达到收敛条件时执行以下代码
+
+    double t = 0;
+    while(t < time) { // 当未达到收敛条件时执行以下代码
         /* 判断是否达到收敛条件 */
         del_x = -lap * (cur_x + needed_x); // 计算需要的x的变化
         del_y = -lap * (cur_y + needed_y); // 计算需要的y的变化
@@ -471,10 +469,13 @@ void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_
                 v = std::sqrt(std::pow(del_x(i),2) + std::pow(del_y(i),2));
                 v = this->checkVel(v, MAX_V, MIN_V);
             }   
+            w *= 0.1;
+            v *= 0.1;
             v += v_form; 
             this->moveRobot(i, v, w);  
         }
         ros::Duration(0.05).sleep();
+        t += 0.05;
 
         this->getRobotPose(current_robot_pose); // 获取机器人姿态信息
         for(int i = 0; i < this->robot_num; i++) {
@@ -483,6 +484,8 @@ void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_
             cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
         }
     }
+    this->stopRobot();
+    ros::Duration(2).sleep();
 }
 
 void SwarmRobot::ChangeFormationDirection(double target_direction)
@@ -502,7 +505,7 @@ void SwarmRobot::ChangeFormationDirection(double target_direction)
         cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
     }
     // PID控制器
-    double Kp = 0.1;
+    double Kp = 1;
     double Ki = 0.01;
     double Kd = 0.01;
     double error = 0;
@@ -519,22 +522,29 @@ void SwarmRobot::ChangeFormationDirection(double target_direction)
             while (del_theta(i) < -pi or del_theta(i) > pi) {
                 if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
                 if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
-            }           
-        }
-        error = del_theta.sum();
-        error_sum += error;
-        w = Kp * error + Ki * error_sum + Kd * (error - error_last);
-        error_last = error;
-        if (std::fabs(error) < 0.1) {
-            is_conv = true;
-        }
-        for(int i = 0; i < this->robot_num; i++) {
+            }
+            error = del_theta(i);
+            w = Kp * error;
             this->moveRobot(i, v, w);  
         }
         ros::Duration(0.05).sleep();
+        // error = del_theta.sum();
+        // error_sum += error;
+        // w = Kp * error + Ki * error_sum + Kd * (error - error_last);
+        // error_last = error;
         getRobotPose(current_robot_pose);
         for (int i = 0; i < this->robot_num; i++) {
             cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
         }
+        for (int i = 0; i < this->robot_num; i++) {
+            if (std::fabs(del_theta(i)) > 0.01) {
+                is_conv = false;
+                break;
+            } else {
+                is_conv = true;
+            }
+        }
     }
+    this->stopRobot();
+    ros::Duration(2).sleep();
 }

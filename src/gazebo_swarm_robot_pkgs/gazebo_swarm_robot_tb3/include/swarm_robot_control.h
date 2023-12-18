@@ -92,7 +92,7 @@ public:
 
     void Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double conv_x, double conv_y);
 
-    void MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form);
+    void MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form, double time);
 
     void ChangeFormationDirection(double target_direction);
 private:
