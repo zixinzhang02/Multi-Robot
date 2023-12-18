@@ -10,9 +10,14 @@
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
 
-#include <eigen3/Eigen/Core>
-#include <eigen3/Eigen/QR>
-#include <eigen3/Eigen/Geometry>
+// #include <eigen3/Eigen/Core>
+// #include <eigen3/Eigen/QR>
+// #include <eigen3/Eigen/Geometry>
+// #include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
+#include <Eigen/Core>
+#include <Eigen/QR>
+#include <Eigen/Geometry>
 
 #include <iostream>
 #include <sstream>
@@ -85,6 +90,11 @@ public:
 
     void HardGraph2Speed(Eigen::MatrixXd Gx0, Eigen::MatrixXd Gy0);
 
+    void Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double conv_x, double conv_y);
+
+    void MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form);
+
+    void ChangeFormationDirection(double target_direction);
 private:
 
    // 用于监听TF（Transform）变换
