@@ -44,14 +44,6 @@ public:
     // 机器人数量
     int robot_num;
 
-    // 机器人之间的距离的矩阵
-    Eigen::MatrixXd distance_matrix;
-    Eigen::MatrixXd x_distance_matrix;
-    Eigen::MatrixXd y_distance_matrix;
-
-    Eigen::VectorXd ux;
-    Eigen::VectorXd uy;
-
     // 获取指定机器人的当前位置信息
     bool getRobotPose(int index, std::vector<double> &pose_cur);
 
@@ -73,28 +65,23 @@ public:
     // 检查速度值是否在指定范围内
     double checkVel(double v, double max_v, double min_v);
 
-    // 随机初始化指定机器人的位置
-    bool RandomInitialize(int index);
-
     void U2VW(int index, double ux_0, double uy_0, double &v, double &w);
 
     void moveRobotbyU(int index, double ux_0, double uy_0);
 
     void moveRobotsbyU(Eigen::VectorXd del_x,  Eigen::VectorXd del_y);
 
-    void calculate_all_Distance();
-
-    void calculate_all_x_distance();
-
-    void calculate_all_y_distance();
-
-    void HardGraph2Speed(Eigen::MatrixXd Gx0, Eigen::MatrixXd Gy0);
-
     void Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double conv_x, double conv_y);
 
-    void MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form, double time);
+    void MoveFormation(Eigen::MatrixXd Gd, Eigen::MatrixXd lap, double v_x, double v_y);
 
     void ChangeFormationDirection(double target_direction);
+
+    void ComeDot(int index, double x0, double y0,double &ux,double &uy);
+
+    void GetGxGyGd(Eigen::MatrixXd &Gx, Eigen::MatrixXd &Gy,Eigen::MatrixXd &Gd);
+
+    void GetVelocity(Eigen::MatrixXd Gd0,Eigen::MatrixXd Gd,double *ux,double *uy);
 
 private:
 

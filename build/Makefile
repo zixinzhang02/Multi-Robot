@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named exp4
+
+# Build rule for target.
+exp4: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 exp4
+.PHONY : exp4
+
+# fast build rule for target.
+exp4/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build
+.PHONY : exp4/fast
+
+#=============================================================================
 # Target rules for targets named move_formation
 
 # Build rule for target.
@@ -1286,6 +1299,19 @@ trajectory_msgs_generate_messages_cpp/fast:
 .PHONY : trajectory_msgs_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named move_formation_cross
+
+# Build rule for target.
+move_formation_cross: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 move_formation_cross
+.PHONY : move_formation_cross
+
+# fast build rule for target.
+move_formation_cross/fast:
+	$(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build
+.PHONY : move_formation_cross/fast
+
+#=============================================================================
 # Target rules for targets named trajectory_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -1372,6 +1398,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... exp4"
 	@echo "... move_formation"
 	@echo "... formation_change"
 	@echo "... formation_triangle"
@@ -1449,6 +1476,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... move_formation_cross"
 	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_lisp"

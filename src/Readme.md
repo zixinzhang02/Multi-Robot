@@ -23,6 +23,7 @@ vim ~/.bashrc
 ```
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_7.launch
 ```
 
 ## 运行多移动机器人运动控制程序
@@ -44,3 +45,7 @@ rosrun gazebo_swarm_robot_tb3 formation_circle
 rosrun gazebo_swarm_robot_tb3 formation_cross
 
 rosrun gazebo_swarm_robot_tb3 move_formation
+
+rosrun gazebo_swarm_robot_tb3 move_formation_cross
+
+rosrun gazebo_swarm_robot_tb3 exp4

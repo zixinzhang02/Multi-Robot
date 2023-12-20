@@ -192,18 +192,6 @@ double SwarmRobot::checkVel(double v, double max_v, double min_v) {
     return v;
 }
 
-/* 随机初始化（单个）机器人的角度 */
-bool SwarmRobot::RandomInitialize(int index) {
-    geometry_msgs::Twist vel_msg;
-    double w_random = rand() % 10;
-    w_random /= 10;
-    double v = 0;
-    vel_msg.angular.z = w_random;
-    cmd_vel_pub[swarm_robot_id[index]-1].publish(vel_msg); // 发布速度控制消息
-    ROS_INFO_STREAM("Randomly Initializing Robot_" << swarm_robot_id[index] << " with v=" << v << " w=" << w_random);
-    return true; // 返回成功
-}
-
 void SwarmRobot::U2VW(int index, double ux, double uy, double &v, double &w)
 {
     v = 0;
@@ -313,7 +301,8 @@ void SwarmRobot::U2VW(int index, double ux, double uy, double &v, double &w)
 }
 
 void SwarmRobot::moveRobotbyU(int index, double ux_0, double uy_0){
-    double v, w;
+    double v = 0;
+    double w = 0;
     U2VW(index, ux_0, uy_0, v, w);
     moveRobot(index, v, w);
 }
@@ -364,83 +353,6 @@ void SwarmRobot::moveRobotsbyU(Eigen::VectorXd del_x,  Eigen::VectorXd del_y){
     //     this->moveRobot(i, v, w);  
     // }
     ros::Duration(0.05).sleep();
-}
-
-void SwarmRobot::calculate_all_Distance(){
-    // update all the distance between robots
-    // store it into the distance matrix
-    for (int i = 0; i < this->robot_num; i++) {
-        for (int j = 0; j < this->robot_num; j++) {
-            if (i == j) {
-                this->distance_matrix(i, j) = 0;
-            } else {
-                std::vector<double> pose_i;
-                std::vector<double> pose_j;
-                getRobotPose(i, pose_i);
-                getRobotPose(j, pose_j);
-                double distance_matrix_ij = sqrt(pow(pose_i[0] - pose_j[0], 2) + pow(pose_i[1] - pose_j[1], 2));
-                this->distance_matrix(i, j) = distance_matrix_ij;
-            }
-        }
-    }
-}
-
-void SwarmRobot::calculate_all_x_distance(){
-    // update all the distance between robots in x axis
-    // store it into the y_distance_matrix
-    for (int i = 0; i < this->robot_num; i++) {
-        for (int j = 0; j < this->robot_num; j++) {
-            if (i == j) {
-                this->x_distance_matrix(i, j) = 0;
-            } else {
-                std::vector<double> pose_i;
-                std::vector<double> pose_j;
-                getRobotPose(i, pose_i);
-                getRobotPose(j, pose_j);
-                double distance_matrix_ij = pose_i[0] - pose_j[0];
-                this->x_distance_matrix(i, j) = distance_matrix_ij;
-            }
-        }
-    }
-}
-
-void SwarmRobot::calculate_all_y_distance(){
-    // update all the distance between robots in y axis
-    // store it into the y_distance_matrix
-    for (int i = 0; i < this->robot_num; i++) {
-        for (int j = 0; j < this->robot_num; j++) {
-            if (i == j) {
-                this->y_distance_matrix(i, j) = 0;
-            } else {
-                std::vector<double> pose_i;
-                std::vector<double> pose_j;
-                getRobotPose(i, pose_i);
-                getRobotPose(j, pose_j);
-                double distance_matrix_ij = pose_i[1] - pose_j[1];
-                this->y_distance_matrix(i, j) = distance_matrix_ij;
-            }
-        }
-    }
-}
-
-void SwarmRobot::HardGraph2Speed(Eigen::MatrixXd Gx0, Eigen::MatrixXd Gy0)
-{
-    // this->x_distance_matrix
-    // this->y_distance_matrix
-    // this->distance_matrix
-    
-    Eigen::MatrixXd gx = Gx0 - this->x_distance_matrix;
-    Eigen::MatrixXd gy = Gy0 - this->y_distance_matrix;
-
-    for (int i = 0; i < swarm_robot_id.size(); i++)
-    {
-        for (int j = 0; j < swarm_robot_id.size(); j++)
-        {
-            double T = 5000;
-            this->ux(i) += gx(i, j) / T;
-            this->uy(i) += gy(i, j) / T;
-        }
-    }
 }
 
 void SwarmRobot::Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double conv_x, double conv_y)
@@ -497,7 +409,7 @@ void SwarmRobot::Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, E
     ros::Duration(2).sleep();
 }
 
-void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form, double time)
+void SwarmRobot::MoveFormation(Eigen::MatrixXd Gd0, Eigen::MatrixXd lap, double v_x, double v_y)
 {
     // 在形成编队之后，移动编队
     std::cout << "this->robot_num" << this->robot_num << endl;
@@ -509,67 +421,62 @@ void SwarmRobot::MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_
     Eigen::VectorXd cur_x(this->robot_num);
     Eigen::VectorXd cur_y(this->robot_num);
     Eigen::VectorXd cur_theta(this->robot_num);
+
+    Eigen::MatrixXd Gx(swarm_robot_id.size(), swarm_robot_id.size());
+    Eigen::MatrixXd Gy(swarm_robot_id.size(), swarm_robot_id.size());
+    Eigen::MatrixXd Gd(swarm_robot_id.size(), swarm_robot_id.size());
+    /*initialize the g*/
+    Eigen::MatrixXd gx(this->robot_num, this->robot_num);
+    Eigen::MatrixXd gy(this->robot_num, this->robot_num);
+
     double MAX_W = 1;       // 最大角速度（弧度/秒）
     double MIN_W = 0.05;    // 最小角速度（弧度/秒）
     double MAX_V = 0.2;     // 最大线性速度（米/秒）
     double MIN_V = 0.01;    // 最小线性速度（米/秒）
     double k_w = 0.1;       // 角速度的缩放比例
     double k_v = 0.1;       // 线性速度的缩放比例
-    double w, v;
     double pi = 3.1415926;
 
-    this->getRobotPose(current_robot_pose);
 
-    for(int i = 0; i < this->robot_num; i++) {
-        cur_x(i) = current_robot_pose[i][0]; // 提取位置信息
-        cur_y(i) = current_robot_pose[i][1]; // 提取位置信息
-        cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
+    /*initialize the robot speed*/
+    double ux[this->robot_num] = {0};
+    double uy[this->robot_num] = {0};
+
+    // /*initialize the G0*/
+    // Eigen::MatrixXd Gd0(this->robot_num, this->robot_num); // 创建Gy0矩阵对象
+    Eigen::MatrixXd gd(this->robot_num, this->robot_num);  // 创建Gy0矩阵对象
+    // /*初始化速度*/
+    // for (int i = 0; i < this->robot_num; i++)
+    // {
+    //     std::cout << "ux" << i << "=" << ux[i] << endl;
+    //     std::cout << "uy" << i << "=" << uy[i] << endl;
+    //     ux[i] = 0;
+    //     uy[i] = 0;
+    // }
+
+    /*获得当前距离矩阵*/
+    this->GetGxGyGd(Gx, Gy, Gd);
+
+    /*计算获得保持队形需要速度*/
+    this->GetVelocity(Gd0, Gd, ux, uy);
+
+    /*叠加直线运动速度*/
+    // 给每个机器人添加一个相同的速度
+    for (int i = 0; i < this->robot_num; i++)
+    {
+        ux[i] += v_x;
+        uy[i] += v_y;
     }
+    // ux[0] += v_x;
+    // uy[0] += v_y;
+    // ux[1] += v_x;
+    // uy[1] += v_y;
 
-    double t = 0;
-    while(t < time) { // 当未达到收敛条件时执行以下代码
-        /* 判断是否达到收敛条件 */
-        del_x = -lap * (cur_x + needed_x); // 计算需要的x的变化
-        del_y = -lap * (cur_y + needed_y); // 计算需要的y的变化
-            
-
-        // 先转一下
-        for (int i = 0; i < this->robot_num; i++) {
-            v_theta(i) = std::atan2(del_y(i) , del_x(i));
-            del_theta(i) = -(cur_theta(i) - v_theta(i));
-            while (del_theta(i) < -pi or del_theta(i) > pi) {
-                if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
-                if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
-            }           
-        }
-        /* Swarm robot move */
-        for(int i = 0; i < this->robot_num; i++) {
-            if (std::fabs(del_theta(i)) > 0.1) {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MAX_W;
-                v = 0;
-            }
-            else {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MIN_W;
-                v = std::sqrt(std::pow(del_x(i),2) + std::pow(del_y(i),2));
-                v = this->checkVel(v, MAX_V, MIN_V);
-            }   
-            w *= 0.1;
-            v *= 0.1;
-            v += v_form; 
-            this->moveRobot(i, v, w);  
-        }
-        ros::Duration(0.05).sleep();
-        t += 0.05;
-
-        this->getRobotPose(current_robot_pose); // 获取机器人姿态信息
-        for(int i = 0; i < this->robot_num; i++) {
-            cur_x(i) = current_robot_pose[i][0]; // 提取位置信息
-            cur_y(i) = current_robot_pose[i][1]; // 提取位置信息
-            cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
-        }
+    for (int i = 0; i < this->robot_num; i++)
+    {
+        this->moveRobotbyU(i, ux[i], uy[i]);
     }
-    this->stopRobot();
-    ros::Duration(2).sleep();
+    ros::Duration(0.05).sleep();
 }
 
 void SwarmRobot::ChangeFormationDirection(double target_direction)
@@ -632,3 +539,154 @@ void SwarmRobot::ChangeFormationDirection(double target_direction)
     this->stopRobot();
     ros::Duration(2).sleep();
 }
+
+void SwarmRobot::ComeDot(int index, double x0, double y0, double &ux, double &uy)
+{
+    double pi = 3.141592653589793;
+    double T = 50;
+    std::vector<double> pose_cur;
+    getRobotPose(index, pose_cur);
+    double x_robot = pose_cur[0];
+    double y_robot = pose_cur[1];
+    double theta_robot = pose_cur[2];
+
+    // ux = (x0 - x_robot)*(x0 - x_robot)*(x0 - x_robot) / T;
+    // uy = (y0 - y_robot)* (y0 - y_robot)* (y0 - y_robot)/ T;
+    ux = (x0 - x_robot) / T;
+    uy = (y0 - y_robot) / T;
+}
+
+/*获得机器人相对位置矩阵*/
+void SwarmRobot::GetGxGyGd(Eigen::MatrixXd &Gx, Eigen::MatrixXd &Gy, Eigen::MatrixXd &Gd)
+{
+    std::vector<double> pose_curi;
+    std::vector<double> pose_curj;
+
+    for (int i = 0; i < this->robot_num; i++)
+    {
+        getRobotPose(i, pose_curi);
+        for (int j = 0; j < this->robot_num; j++)
+        {
+            getRobotPose(j, pose_curj);
+            Gx(i, j) = pose_curi[0] - pose_curj[0];
+            Gy(i, j) = pose_curi[1] - pose_curj[1];
+            Gd(i, j) = std::sqrt(Gx(i, j) * Gx(i, j) + Gy(i, j) * Gy(i, j));
+        }
+    }
+    /*dubug*/
+    std::cout << "Gx =" << endl;
+    std::cout << Gx << endl;
+    std::cout << "********************************************************" << endl;
+    std::cout << "Gy=" << endl;
+    std::cout << Gy << endl;
+    std::cout << "********************************************************" << endl;
+    std::cout << "Gd=" << endl;
+    std::cout << Gd << endl;
+    std::cout << "********************************************************" << endl;
+}
+
+/*通过相对位置计算速度*/
+void SwarmRobot::GetVelocity(Eigen::MatrixXd Gd0, Eigen::MatrixXd Gd, double *ux, double *uy)
+{
+    std::vector<double> pose_curi;
+    std::vector<double> pose_curj;
+    double d = 0;
+    Eigen::MatrixXd gd(this->robot_num, this->robot_num);
+    gd = (Gd - Gd0);
+    std::cout << "gd =" << endl;
+    std::cout << gd << endl;
+    std::cout << "********************************************************" << endl;
+    std::cout << "Gd0=" << endl;
+    std::cout << Gd0 << endl;
+    std::cout << "********************************************************" << endl;
+    std::cout << "Gd=" << endl;
+    std::cout << Gd << endl;
+    std::cout << "********************************************************" << endl;
+
+    /*获得方向向量,一号车不动,二号车与一号车距离固定，其它车以这两两车为目标计算速度*/
+    ux[0] = 0;
+    uy[0] = 0;
+    double direction[2] = {0};
+    double direction0[2] = {0};
+    double direction1[2] = {0};
+    /*初始化速度*/
+    for (int i = 0; i < this->robot_num; i++)
+    {
+        std::cout << "ux" << i << "=" << ux[i] << endl;
+        std::cout << "uy" << i << "=" << uy[i] << endl;
+        ux[i] = 0;
+        uy[i] = 0;
+    }
+    /*获得车的速度*/
+    /*二号车速度计算*/
+    for (int i = 1; i < 2; i++)
+    {
+        getRobotPose(i, pose_curi);
+        for (int j = 0; j < 2; j++)
+        {
+            getRobotPose(j, pose_curj);
+            /*计算面对车1（或2）的方向向量*/
+            direction[0] = pose_curj[0] - pose_curi[0];
+            direction[1] = pose_curj[1] - pose_curi[1];
+            d = std::sqrt(direction[0] * direction[0] + direction[1] * direction[1]);
+            if (d != 0)
+            {
+                direction0[0] = direction[0] / d;
+                direction0[1] = direction[1] / d;
+            }
+            else
+            {
+                direction0[0] = 0;
+                direction0[1] = 0;
+            }
+            ux[i] += gd(i, j) * direction0[0];
+            uy[i] += gd(i, j) * direction0[1];
+        }
+    }
+    /*3和之后的车的速度计算*/
+    for (int i = 2; i < this->robot_num; i++)
+    {
+        getRobotPose(i, pose_curi);
+        for (int j = 0; j < 3; j++)
+        {
+            getRobotPose(j, pose_curj);
+            /*计算面对车1（或2）的方向向量*/
+            direction[0] = pose_curj[0] - pose_curi[0];
+            direction[1] = pose_curj[1] - pose_curi[1];
+            d = std::sqrt(direction[0] * direction[0] + direction[1] * direction[1]);
+            if (d != 0)
+            {
+                direction0[0] = direction[0] / d;
+                direction0[1] = direction[1] / d;
+            }
+            else
+            {
+                direction0[0] = 0;
+                direction0[1] = 0;
+            }
+            ux[i] += gd(i, j) * direction0[0];
+            uy[i] += gd(i, j) * direction0[1];
+        }
+    }
+}
+
+
+    // for (int i = 1; i < this->robot_num; i++)
+    // {
+    //     getRobotPose(i, pose_curi);
+    //     for (int j = 0; j < 2; j++)
+    //     {
+    //         getRobotPose(j, pose_curj);
+    //         direction[0] = pose_curj[0] - pose_curi[0];
+    //         direction[1] = pose_curj[1] - pose_curi[1];
+
+    //         d = std::sqrt(direction[0] * direction[0] + direction[1] * direction[1]);
+    //         if (d != 0)
+    //         {
+    //             direction[0] = direction[0] / d;
+    //             direction[1] = direction[1] / d;
+    //         }
+    //         ux[i] = ux[i] + direction[0] * gd(i, j);
+    //         uy[i] = uy[i] + direction[1] * gd(i, j);
+    //     }
+    // }

@@ -157,6 +157,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/rule:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/rule
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/rule
+
+# Convenience name for target.
+exp4: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/rule
+
+.PHONY : exp4
+
+# fast build rule for target.
+exp4/fast:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build
+.PHONY : exp4/fast
+
+# Convenience name for target.
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/rule
@@ -1327,6 +1342,21 @@ trajectory_msgs_generate_messages_cpp/fast:
 .PHONY : trajectory_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/rule:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/rule
+.PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/rule
+
+# Convenience name for target.
+move_formation_cross: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/rule
+
+.PHONY : move_formation_cross
+
+# fast build rule for target.
+move_formation_cross/fast:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build
+.PHONY : move_formation_cross/fast
+
+# Convenience name for target.
 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f CMakeFiles/Makefile2 gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
 .PHONY : gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
@@ -1385,6 +1415,33 @@ gazebo_swarm_robot_control_angle: gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3
 gazebo_swarm_robot_control_angle/fast:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build
 .PHONY : gazebo_swarm_robot_control_angle/fast
+
+src/exp4.o: src/exp4.cpp.o
+
+.PHONY : src/exp4.o
+
+# target to build an object file
+src/exp4.cpp.o:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/exp4.cpp.o
+.PHONY : src/exp4.cpp.o
+
+src/exp4.i: src/exp4.cpp.i
+
+.PHONY : src/exp4.i
+
+# target to preprocess a source file
+src/exp4.cpp.i:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/exp4.cpp.i
+.PHONY : src/exp4.cpp.i
+
+src/exp4.s: src/exp4.cpp.s
+
+.PHONY : src/exp4.s
+
+# target to generate assembly for a file
+src/exp4.cpp.s:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/exp4.cpp.s
+.PHONY : src/exp4.cpp.s
 
 src/formation_change.o: src/formation_change.cpp.o
 
@@ -1575,6 +1632,33 @@ src/move_formation.cpp.s:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/src/move_formation.cpp.s
 .PHONY : src/move_formation.cpp.s
 
+src/move_formation_cross.o: src/move_formation_cross.cpp.o
+
+.PHONY : src/move_formation_cross.o
+
+# target to build an object file
+src/move_formation_cross.cpp.o:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/move_formation_cross.cpp.o
+.PHONY : src/move_formation_cross.cpp.o
+
+src/move_formation_cross.i: src/move_formation_cross.cpp.i
+
+.PHONY : src/move_formation_cross.i
+
+# target to preprocess a source file
+src/move_formation_cross.cpp.i:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/move_formation_cross.cpp.i
+.PHONY : src/move_formation_cross.cpp.i
+
+src/move_formation_cross.s: src/move_formation_cross.cpp.s
+
+.PHONY : src/move_formation_cross.s
+
+# target to generate assembly for a file
+src/move_formation_cross.cpp.s:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/move_formation_cross.cpp.s
+.PHONY : src/move_formation_cross.cpp.s
+
 src/stop_robot.o: src/stop_robot.cpp.o
 
 .PHONY : src/stop_robot.o
@@ -1608,6 +1692,7 @@ src/swarm_robot_control.o: src/swarm_robot_control.cpp.o
 
 # target to build an object file
 src/swarm_robot_control.cpp.o:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/src/swarm_robot_control.cpp.o
@@ -1617,6 +1702,7 @@ src/swarm_robot_control.cpp.o:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.o
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/swarm_robot_control.cpp.o
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.o
 .PHONY : src/swarm_robot_control.cpp.o
 
@@ -1626,6 +1712,7 @@ src/swarm_robot_control.i: src/swarm_robot_control.cpp.i
 
 # target to preprocess a source file
 src/swarm_robot_control.cpp.i:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/src/swarm_robot_control.cpp.i
@@ -1635,6 +1722,7 @@ src/swarm_robot_control.cpp.i:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.i
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/swarm_robot_control.cpp.i
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.i
 .PHONY : src/swarm_robot_control.cpp.i
 
@@ -1644,6 +1732,7 @@ src/swarm_robot_control.s: src/swarm_robot_control.cpp.s
 
 # target to generate assembly for a file
 src/swarm_robot_control.cpp.s:
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir/src/swarm_robot_control.cpp.s
@@ -1653,6 +1742,7 @@ src/swarm_robot_control.cpp.s:
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_cross.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/test.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_x_position.dir/src/swarm_robot_control.cpp.s
+	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir/src/swarm_robot_control.cpp.s
 	cd /home/zhangzixin/multi-robot/build && $(MAKE) -f gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/build.make gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/gazebo_swarm_robot_control_angle.dir/src/swarm_robot_control.cpp.s
 .PHONY : src/swarm_robot_control.cpp.s
 
@@ -1720,6 +1810,7 @@ help:
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... exp4"
 	@echo "... move_formation"
 	@echo "... formation_change"
 	@echo "... formation_triangle"
@@ -1800,10 +1891,14 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... dynamic_reconfigure_gencfg"
 	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... move_formation_cross"
 	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... gazebo_swarm_robot_control_angle"
+	@echo "... src/exp4.o"
+	@echo "... src/exp4.i"
+	@echo "... src/exp4.s"
 	@echo "... src/formation_change.o"
 	@echo "... src/formation_change.i"
 	@echo "... src/formation_change.s"
@@ -1825,6 +1920,9 @@ help:
 	@echo "... src/move_formation.o"
 	@echo "... src/move_formation.i"
 	@echo "... src/move_formation.s"
+	@echo "... src/move_formation_cross.o"
+	@echo "... src/move_formation_cross.i"
+	@echo "... src/move_formation_cross.s"
 	@echo "... src/stop_robot.o"
 	@echo "... src/stop_robot.i"
 	@echo "... src/stop_robot.s"

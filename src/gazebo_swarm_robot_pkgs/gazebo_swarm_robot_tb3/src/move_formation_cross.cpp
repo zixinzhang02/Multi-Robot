@@ -21,19 +21,18 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh; // 创建ROS节点句柄
 
     /* 第一步：基于Aruco标记设置群体机器人的ID */
-    std::vector<int> swarm_robot_id{1, 2, 3, 4, 5, 6}; // 创建包含群体机器人ID的向量
+    std::vector<int> swarm_robot_id{1, 2, 3, 4, 5}; // 创建包含群体机器人ID的向量
 
     /* 初始化群体机器人对象 */
     SwarmRobot swarm_robot(&nh, swarm_robot_id); // 创建 SwarmRobot 类的对象，用于控制一组机器人
 
     /* 设置拉普拉斯矩阵 */
     Eigen::MatrixXd lap(swarm_robot_id.size(), swarm_robot_id.size()); // 创建拉普拉斯矩阵对象
-    lap <<  5, -1, -1, -1, -1, -1,
-            -1, 5, -1, -1, -1, -1,
-            -1, -1, 5, -1, -1, -1,
-            -1, -1, -1, 5, -1, -1,
-            -1, -1, -1, -1, 5, -1,
-            -1, -1, -1, -1, -1, 5;
+    lap <<  4, -1, -1, -1, -1,
+            -1, 4, -1, -1, -1,
+            -1, -1, 4, -1, -1,
+            -1, -1, -1, 4, -1,
+            -1, -1, -1, -1, 4;
     /* 收敛阈值 */
     double conv_th = 0.05;  // 角度的阈值，单位弧度
     double conv_x = 0.1;  // x的阈值，单位m
@@ -71,30 +70,27 @@ int main(int argc, char** argv) {
     Eigen::VectorXd needed_x_rectangle(swarm_robot_id.size());
     Eigen::VectorXd needed_y_rectangle(swarm_robot_id.size());
 
-    needed_x_circle << 1.71, 0, -1.71, -1.71, 0, 1.71;
-    needed_y_circle << -1, -2, -1, 1, 2, 1;
+    needed_x_cross << 1, 0, 0, 0, -1;
+    needed_y_cross << 0, -1, 0, 1, 0;
 
-    needed_x_rectangle << 1.71, 0, -1.71, -1.71, 0, 1.71;
-    needed_y_rectangle << -1, -1, -1, 1, 1, 1;
+    Eigen::VectorXd needed_x = needed_x_cross;
+    Eigen::VectorXd needed_y = needed_y_cross;
 
-    // 计算needed_x_circle[0] 和 needed_y_circle[0]的距离
-    double original_radius = std::sqrt(std::pow(needed_x_circle[0], 2) + std::pow(needed_y_circle[0], 2));
-    double target_radius = 1; // 目标半径
-    double scale_factor = target_radius / original_radius;
-
-    needed_x_circle *= scale_factor / 2;
-    needed_y_circle *= scale_factor / 2;
-
-    needed_x_rectangle *= scale_factor / 2;
-    needed_y_rectangle *= scale_factor / 2;
+    // Eigen::MatrixXd Gd_hexagon << 0, 1, 1, 1, 1, 1, 1
 
     start = clock();
 
-    conv_x = 0.05;
-    conv_y = 0.05;
-    swarm_robot.Formation(needed_x_circle, needed_y_circle, lap, conv_x, conv_y);
+    conv_x = 0.08;
+    conv_y = 0.08;
+    swarm_robot.Formation(needed_x, needed_y, lap, conv_x, conv_y);
     swarm_robot.ChangeFormationDirection(pi/2);
-    // swarm_robot.MoveFormation(needed_x_circle, needed_y_circle, lap, 0.2, 2);
+
+    double t = 0;
+    while (t < 3000){
+        // swarm_robot.MoveFormation(needed_x, needed_y, lap, 0.2, 2);
+        t += 60;
+    }
+   
     // swarm_robot.ChangeFormationDirection(0);
     // swarm_robot.MoveFormation(needed_x_circle, needed_y_circle, lap, 0.2, 5);
 

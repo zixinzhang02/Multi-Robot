@@ -72,6 +72,12 @@ target_link_libraries(formation_change ${catkin_LIBRARIES})
 add_executable(move_formation src/move_formation.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
 target_link_libraries(move_formation ${catkin_LIBRARIES})
 
+add_executable(move_formation_cross src/move_formation_cross.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(move_formation_cross ${catkin_LIBRARIES})
+
+add_executable(exp4 src/exp4.cpp src/swarm_robot_control.cpp include/swarm_robot_control.h)
+target_link_libraries(exp4 ${catkin_LIBRARIES})
+
 
 
 

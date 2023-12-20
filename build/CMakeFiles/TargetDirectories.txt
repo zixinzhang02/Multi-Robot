@@ -39,6 +39,7 @@
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/install/local.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/install.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/list_install_components.dir
+/home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/exp4.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_change.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/formation_triangle.dir
@@ -119,6 +120,7 @@
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/tf2_msgs_generate_messages_lisp.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/dynamic_reconfigure_gencfg.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir
+/home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/move_formation_cross.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir
 /home/zhangzixin/multi-robot/build/gazebo_swarm_robot_pkgs/gazebo_swarm_robot_tb3/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir
