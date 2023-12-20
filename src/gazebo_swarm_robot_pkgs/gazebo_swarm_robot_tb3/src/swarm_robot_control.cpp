@@ -204,54 +204,166 @@ bool SwarmRobot::RandomInitialize(int index) {
     return true; // 返回成功
 }
 
-void SwarmRobot::U2VW(int index, double ux_0,double uy_0, double &v, double &w){
+void SwarmRobot::U2VW(int index, double ux, double uy, double &v, double &w)
+{
+    v = 0;
+    w = 0;
+    double pi = 3.141592653589793;
     std::vector<double> pose_cur;
     getRobotPose(index, pose_cur);
+    double x_robot = pose_cur[0];
+    double y_robot = pose_cur[1];
     double theta_robot = pose_cur[2];
-    double ux = ux_0 * std::cos(theta_robot) - uy_0 * std::sin(theta_robot);
-    double uy = ux_0 * std::sin(theta_robot) + uy_0 * std::cos(theta_robot);
-
-    if (ux == 0) {
-        ux = 0.001;
+    double v0 = std::sqrt(ux * ux + uy * uy);
+    double theta_v = 0;
+    double theta_v_sin = 0;
+    double theta_v_cos = 0;
+    /*确定速度方向*/
+    theta_v_cos = std::acos(ux / std::sqrt(ux * ux + uy * uy));
+    theta_v_sin = std::asin(uy / std::sqrt(ux * ux + uy * uy));
+    if (uy > 0)
+    {
+        theta_v = theta_v_cos;
     }
-    if (uy == 0) {
-        uy = 0.001;
+    else if (uy < 0)
+    {
+        theta_v = -theta_v_cos;
+    }
+    else
+    {
+        if (ux == 0)
+        {
+            theta_v = theta_robot;
+        }
+        else
+        {
+            if (uy > 0)
+            {
+                theta_v = pi / 2;
+            }
+            else if (uy < 0)
+            {
+                theta_v = -pi / 2;
+            }
+        }
+        if(ux > 0)
+        {
+            theta_v = 0;
+        }
+        else if (ux< 0)
+        {
+            theta_v = pi;
+        }
+    }
+    /*限定angle大小*/
+    double angle = theta_v - theta_robot;
+    while (angle > pi || angle < -pi)
+    {
+        if (angle > pi)
+        {
+            angle = angle - 2 * pi;
+        }
+        else
+        {
+            angle = angle + 2 * pi;
+        }
+    }
+
+    double W = 1; // 角速度最大值参考参数
+    double V = 1; // 速度方向
+    /*速度控制*/
+    if (angle > pi / 2)
+    {
+        angle = angle - pi;
+        // 速度反向
+        V = -1;
+    }
+    else if (angle < -pi / 2)
+    {
+        angle = pi - angle;
+        // 速度反向
+        V = -1;
+    }
+    else
+    {
+        // 速度正向
+        V = 1;
+    }
+    w = W * (angle / std::abs(angle)) * (std::exp(std::abs(angle)) - 1);
+    v = V * v0 * std::exp(-std::abs(angle));
+    if (v > 0 && v > 0.5)
+    {
+        v = 0.5;
+    }
+    else if (v < 0 && v < -0.5)
+    {
+        v = -0.5;
+    }
+    else if (v == 0)
+    {
+        w = 0;
     }
     
-    double theta2 = ux/uy;
-    double T = 0.05;
-    v = (ux*ux + uy*uy)/ux * std::atan(theta2);
-    w = 0.2*((2/T)*std::atan(theta2));
-    // while (w > 2*3.1416)
-    // {
-    //     w = w - 2*3.1416;
-    // }
-    // if (w > 3.1416) {
-    //     w = -3.1416 * 2 + w;
-    // }
-    // w *= 0.3;
-    // 限制w的范围在[-1,1]
-    if (w > 0.3) {
-        w = 0.3;
-    }
-    if (w < -0.3) {
-        w = -0.3;
-    }
-    // w *= 0.2;
-
-    
+    /*deug*/
+    std::cout << "//angle = " << angle << endl;
+    std::cout << "//theta_v = " << theta_v << endl;
+    std::cout << "//theta_robot = " << theta_robot << endl;
+    std::cout << "//v = " << v << endl;
+    std::cout << "//w = " << w << endl;
 }
 
 void SwarmRobot::moveRobotbyU(int index, double ux_0, double uy_0){
-    double v,w;
+    double v, w;
     U2VW(index, ux_0, uy_0, v, w);
     moveRobot(index, v, w);
 }
 
 void SwarmRobot::moveRobotsbyU(Eigen::VectorXd del_x,  Eigen::VectorXd del_y){
-    for (int i = 0; i < this->robot_num; i++) {
-        moveRobotbyU(i, del_x(i), del_y(i));
+    // for (int i = 0; i < this->robot_num; i++) {
+    //     moveRobotbyU(i, del_x(i), del_y(i));
+    // }
+    double v, w;
+    double MAX_W = 1;       // 最大角速度（弧度/秒）
+    double MIN_W = 0.05;    // 最小角速度（弧度/秒）
+    double MAX_V = 0.2;     // 最大线性速度（米/秒）
+    double MIN_V = 0.01;    // 最小线性速度（米/秒）
+    Eigen::VectorXd v_theta(this->robot_num);
+    Eigen::VectorXd del_theta(this->robot_num);
+    Eigen::VectorXd cur_theta(this->robot_num);
+    std::vector<std::vector<double> > current_robot_pose(this->robot_num);
+    double pi = 3.14159;
+    this->getRobotPose(current_robot_pose);
+    for (int i = 0; i < this->robot_num; i++){
+        double ux = del_x(i) * 0.2;
+        double uy = del_y(i) * 0.2;
+        this->moveRobotbyU(i, ux, uy);
     }
+    // for(int i = 0; i < this->robot_num; i++) {
+    //     cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
+    // }
+
+    // for (int i = 0; i < this->robot_num; i++) {
+    //         v_theta(i) = std::atan2(del_y(i) , del_x(i));
+    //         del_theta(i) = -(cur_theta(i) - v_theta(i));
+    //         while (del_theta(i) < -pi or del_theta(i) > pi) {
+    //             if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
+    //             if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
+    //         }           
+    //     }
+    //     /* Swarm robot move */
+    // for(int i = 0; i < this->robot_num; i++) {
+    //     if (std::fabs(del_theta(i)) > 0.1) {
+    //         w = del_theta(i) / std::fabs(del_theta(i)) * MAX_W;
+    //         v = 0;
+    //     }
+    //     else {
+    //         w = del_theta(i) / std::fabs(del_theta(i)) * MIN_W;
+    //         v = std::sqrt(std::pow(del_x(i),2) + std::pow(del_y(i),2));
+    //         v = this->checkVel(v, MAX_V, MIN_V);
+    //     }    
+    //     this->moveRobot(i, v, w);  
+    // }
+    ros::Duration(0.05).sleep();
 }
 
 void SwarmRobot::calculate_all_Distance(){
@@ -338,15 +450,15 @@ void SwarmRobot::Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, E
     std::vector<std::vector<double> > current_robot_pose(this->robot_num);
     Eigen::VectorXd del_x(this->robot_num);
     Eigen::VectorXd del_y(this->robot_num);
-    Eigen::VectorXd del_theta(this->robot_num);
-    Eigen::VectorXd v_theta(this->robot_num);
+    // Eigen::VectorXd del_theta(this->robot_num);
+    // Eigen::VectorXd v_theta(this->robot_num);
     Eigen::VectorXd cur_x(this->robot_num);
     Eigen::VectorXd cur_y(this->robot_num);
     Eigen::VectorXd cur_theta(this->robot_num);
-    double MAX_W = 1;       // 最大角速度（弧度/秒）
-    double MIN_W = 0.05;    // 最小角速度（弧度/秒）
-    double MAX_V = 0.2;     // 最大线性速度（米/秒）
-    double MIN_V = 0.01;    // 最小线性速度（米/秒）
+    // double MAX_W = 1;       // 最大角速度（弧度/秒）
+    // double MIN_W = 0.05;    // 最小角速度（弧度/秒）
+    // double MAX_V = 0.2;     // 最大线性速度（米/秒）
+    // double MIN_V = 0.01;    // 最小线性速度（米/秒）
     double k_w = 0.1;       // 角速度的缩放比例
     double k_v = 0.1;       // 线性速度的缩放比例
     double w, v;
@@ -371,35 +483,7 @@ void SwarmRobot::Formation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, E
             }       
         }
 
-        // 先转一下
-        for (int i = 0; i < this->robot_num; i++) {
-            v_theta(i) = std::atan2(del_y(i) , del_x(i));
-            del_theta(i) = -(cur_theta(i) - v_theta(i));
-            while (del_theta(i) < -pi or del_theta(i) > pi) {
-                if (del_theta(i) < -pi) del_theta(i) += 2 * pi;
-                if (del_theta(i) > pi) del_theta(i) -= 2 * pi;
-            }           
-        }
-        /* Swarm robot move */
-        for(int i = 0; i < this->robot_num; i++) {
-            if (std::fabs(del_theta(i)) > 0.1) {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MAX_W;
-                v = 0;
-            }
-            else {
-                w = del_theta(i) / std::fabs(del_theta(i)) * MIN_W;
-                v = std::sqrt(std::pow(del_x(i),2) + std::pow(del_y(i),2));
-                v = this->checkVel(v, MAX_V, MIN_V);
-            }    
-            this->moveRobot(i, v, w);  
-        }
-        ros::Duration(0.05).sleep();
-
-        // double k_v = 0.1; 已经定义过了
-        // del_x *= k_v; // 缩放x的变化
-        // del_y *= k_v; // 缩放y的变化
-        // swarm_robot.moveRobotsbyU(del_x, del_y); // 移动机器人
-        // ros::Duration(0.5).sleep();
+        this->moveRobotsbyU(del_x, del_y);
 
         this->getRobotPose(current_robot_pose); // 获取机器人姿态信息
         for(int i = 0; i < this->robot_num; i++) {

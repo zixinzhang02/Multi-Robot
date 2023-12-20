@@ -95,6 +95,7 @@ public:
     void MoveFormation(Eigen::VectorXd needed_x, Eigen::VectorXd needed_y, Eigen::MatrixXd lap, double v_form, double time);
 
     void ChangeFormationDirection(double target_direction);
+
 private:
 
    // 用于监听TF（Transform）变换

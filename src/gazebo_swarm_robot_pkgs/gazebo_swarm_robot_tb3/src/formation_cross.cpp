@@ -51,11 +51,9 @@ int main(int argc, char** argv) {
 
     /* 第一步：基于Aruco标记设置群体机器人的ID */
     std::vector<int> swarm_robot_id{1, 2, 3, 4, 5}; // 创建包含群体机器人ID的向量
-    std::vector<int> dynamic_robot_id{0, 1, 2, 3, 4}; //
 
     /* 初始化群体机器人对象 */
     SwarmRobot swarm_robot(&nh, swarm_robot_id); // 创建 SwarmRobot 类的对象，用于控制一组机器人
-    std::cout << "11111111";
 
     /* 设置拉普拉斯矩阵 */
     Eigen::MatrixXd lap(swarm_robot_id.size(), swarm_robot_id.size()); // 创建拉普拉斯矩阵对象
@@ -71,10 +69,36 @@ int main(int argc, char** argv) {
     needed_x_cross << 1, 0, 0, 0, -1;
     needed_y_cross << 0, -1, 0, 1, 0;
 
-    double conv_x = 0.05;
-    double conv_y = 0.05;
+    std::vector<std::vector<double> > current_robot_pose(swarm_robot.robot_num);
+    Eigen::VectorXd cur_x(swarm_robot.robot_num);
+    Eigen::VectorXd cur_y(swarm_robot.robot_num);
+    Eigen::VectorXd cur_theta(swarm_robot.robot_num);
+    swarm_robot.getRobotPose(current_robot_pose);
+    for(int i = 0; i < swarm_robot.robot_num; i++) {
+        cur_x(i) = current_robot_pose[i][0]; // 提取位置信息
+        cur_y(i) = current_robot_pose[i][1]; // 提取位置信息
+        cur_theta(i) = current_robot_pose[i][2]; // 提取角度信息
+    }
+    int closestRobotId;
+    closestRobotId = findClosestRobot(cur_x, cur_y);
 
-    swarm_robot.Formation(needed_x_cross, needed_y_cross, lap, conv_x, conv_y);
+    Eigen::VectorXd needed_x = needed_x_cross;
+    Eigen::VectorXd needed_y = needed_y_cross;
+
+    needed_x(closestRobotId) = needed_x_cross(2);
+    needed_x(2) = needed_x_cross(closestRobotId);
+
+    needed_y(closestRobotId) = needed_y_cross(2);
+    needed_y(2) = needed_y_cross(closestRobotId);
+
+    std::cout << closestRobotId << endl;
+    std::cout << needed_x << endl; 
+    std::cout << needed_y << endl;
+
+    double conv_x = 0.08;
+    double conv_y = 0.08;
+
+    swarm_robot.Formation(needed_x, needed_y, lap, conv_x, conv_y);
 
     end = clock();
     ROS_INFO_STREAM("Succeed!"); // 输出成功消息
