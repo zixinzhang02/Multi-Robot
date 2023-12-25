@@ -83,6 +83,10 @@ public:
 
     void GetVelocity(Eigen::MatrixXd Gd0,Eigen::MatrixXd Gd,double *ux,double *uy);
 
+    void Crashproof(Eigen::MatrixXd Gd,double &ux,double &uy);
+
+    void ObstacleAvoidance(double &ux,double &uy);
+
 private:
 
    // 用于监听TF（Transform）变换

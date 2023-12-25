@@ -105,10 +105,8 @@ int main(int argc, char** argv) {
     Eigen::VectorXd needed_x = needed_x_hexagon;
     Eigen::VectorXd needed_y = needed_y_hexagon;
 
-    needed_x = needed_x_gong;
-    needed_y = needed_y_gong;
-
     start = clock();
+    
 
     conv_x = 0.08;
     conv_y = 0.08;

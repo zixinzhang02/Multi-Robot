@@ -670,23 +670,28 @@ void SwarmRobot::GetVelocity(Eigen::MatrixXd Gd0, Eigen::MatrixXd Gd, double *ux
     }
 }
 
-
-    // for (int i = 1; i < this->robot_num; i++)
-    // {
-    //     getRobotPose(i, pose_curi);
-    //     for (int j = 0; j < 2; j++)
-    //     {
-    //         getRobotPose(j, pose_curj);
-    //         direction[0] = pose_curj[0] - pose_curi[0];
-    //         direction[1] = pose_curj[1] - pose_curi[1];
-
-    //         d = std::sqrt(direction[0] * direction[0] + direction[1] * direction[1]);
-    //         if (d != 0)
-    //         {
-    //             direction[0] = direction[0] / d;
-    //             direction[1] = direction[1] / d;
-    //         }
-    //         ux[i] = ux[i] + direction[0] * gd(i, j);
-    //         uy[i] = uy[i] + direction[1] * gd(i, j);
-    //     }
-    // }
+/*防撞函数*/
+void SwarmRobot::Crashproof(Eigen::MatrixXd Gd,double &ux,double &uy)
+{
+    std::vector<double> pose_curi;
+    std::vector<double> pose_curj;
+    for( int i = 0; i < this->robot_num;i++)
+    {
+        getRobotPose(i, pose_curi);
+        for(int j = 0; j < this->robot_num;j++)
+        {
+            getRobotPose(j, pose_curj);
+            if(i != j)
+            {
+                if(Gd(i,j) < 0.1)
+                {
+                    
+                    ux += 0.01/(pose_curj[0] - pose_curi[0]);
+                    uy += 0.01/(pose_curj[1] - pose_curi[1]);
+                }
+            }
+            
+        }
+    }
+}
+    
