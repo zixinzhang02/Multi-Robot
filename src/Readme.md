@@ -1,4 +1,4 @@
-# 角度，位置一致性协议
+# 《多机器人系统与控制》课程实验代码|Experiments of course Multi Robot System and Control
 
 ## ROS工作空间创建及编译
 新建一个文件夹(如mr_ws)，src放进去，然后在文件夹这个目录下，在终端运行catkin_make进行编译（每次改完代码也记得编译一下）
