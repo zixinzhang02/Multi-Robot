@@ -1,8 +1,8 @@
 # 《多机器人系统与控制》课程实验代码|Experiments of course Multi Robot System and Control
 
 ## ROS工作空间创建及编译
-新建一个文件夹(如mr_ws)，src放进去，然后在文件夹这个目录下，在终端运行catkin_make进行编译（每次改完代码也记得编译一下）
-```shell
+```
+git clone https://github.com/zixinzhang02/Multi-Robot.git
 catkin_make
 ```
 ## 添加环境变量
@@ -21,7 +21,7 @@ vim ~/.bashrc
 
 ## 打开多机器人Gazebo仿真平台
 ```
-roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
+
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_7.launch
 ```
@@ -29,23 +29,30 @@ roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_7.launch
 ## 运行多移动机器人运动控制程序
 角度一致性
 ```
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_angle
 ```
 位置一致性
 ```
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_x_position
 ```
-
-rosrun gazebo_swarm_robot_tb3 test_2
-
-rosrun gazebo_swarm_robot_tb3 formation_change
-
+队形控制及变换
+```
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 formation_circle
-
 rosrun gazebo_swarm_robot_tb3 formation_cross
-
+rosrun gazebo_swarm_robot_tb3 formation_triangle
+```
+队形移动
+```
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
 rosrun gazebo_swarm_robot_tb3 move_formation
-
 rosrun gazebo_swarm_robot_tb3 move_formation_cross
-
+```
+队形移动及避障
+```
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_8.launch
 rosrun gazebo_swarm_robot_tb3 exp4
+
+```
