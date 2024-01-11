@@ -19,40 +19,29 @@ vim ~/.bashrc
 然后把source devel/setup.bash这句话加进去后保存退出
 
 
-## 打开多机器人Gazebo仿真平台
-```
-
-roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
-roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_7.launch
-```
-
-## 运行多移动机器人运动控制程序
-角度一致性
+## 打开多机器人Gazebo仿真平台并运行多移动机器人运动控制程序
+角度及位置一致性（实验1）
 ```
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_angle
-```
-位置一致性
-```
-roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 gazebo_swarm_robot_control_x_position
 ```
-队形控制及变换
+队形控制及变换（实验2）
 ```
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_5.launch
 rosrun gazebo_swarm_robot_tb3 formation_circle
 rosrun gazebo_swarm_robot_tb3 formation_cross
 rosrun gazebo_swarm_robot_tb3 formation_triangle
 ```
-队形移动
+队形移动（实验3）
 ```
 roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_6.launch
 rosrun gazebo_swarm_robot_tb3 move_formation
 rosrun gazebo_swarm_robot_tb3 move_formation_cross
 ```
-队形移动及避障
+队形移动及避障（实验4）
 ```
-roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_8.launch
+roslaunch gazebo_swarm_robot_tb3 gazebo_swarm_robot_7.launch
 rosrun gazebo_swarm_robot_tb3 exp4
 
 ```
